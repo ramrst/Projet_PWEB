@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <title>Accueil - Covoiturage</title>
+  <link rel="stylesheet" href="loginpagestyle.css">
+</head>
+<body>
+    <header>
+        <h1>Nsogo</h1>
+        <nav>
+          <div class="left-menu">
+            <ul>
+              <li><a href="#">Accueil</a></li>
+              <li><a href="#presentation">Présentation</a></li>
+              <li><a href="#aventage">aventages</a></li>
+            </ul>
+          </div>
+        </nav>
+    </header>
+    <div class="image">
+    </div>
+    <div class="container" id="container">
+        <!-- Utilisation de classes BEM pour les formulaires -->
+        <div class="form-container sign-up">
+            <form>
+                <h1>Create Account</h1>
+                <input type="text" placeholder="Nom" required>
+                <input type="text" placeholder="Prénom" required>
+                <input type="text" placeholder="Numéro de téléphone" required>
+                <input type="text" placeholder="Matricule d'étudiant" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Insérer le mot de passe" required>
+                <input type="text" placeholder="Confirmer le mot de passe" required>
+                <button type="submit">Sign Up</button>
+
+            </form>
+        </div>
+
+        <div class="form-container sign-in">
+            <form>
+                <h1>Se connecter</h1>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Mot de passe" required>
+                <a href="#">Mot de passe oublié?</a>
+                <button type="submit">Se connecter</button>
+            </form>
+        </div>
+
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Content de te revoir!</h1>
+                    <p>Enter your personal details to use all site features</p>
+                    <button class="hidden" id="login">Se connecter</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Bonjour !</h1>
+                    <p>Inscrivez-vous avec vos informations personnelles pour utiliser toutes les fonctionnalités du site</p>
+                    <button class="hidden" id="register">s'inscrire</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 Covoiturage | Contactez-nous : contact@covoiturage.com</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+<html>
