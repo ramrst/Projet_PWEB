@@ -1,0 +1,205 @@
+/* Variables de couleur */
+:root {
+  --primary-color: #333;
+  --background-color: #c9d6ff;
+  --text-color: #fff;
+  --container-bg-color: #fff;
+  --container-shadow: rgba(0, 0, 0, 0.35);
+  --link-hover-color: #b1b9b8;
+  --form-bg-color: #eee;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+  }
+  
+  main {
+    flex: 1; /* Pour que le contenu principal prenne tout l'espace restant */
+    padding: 20px;
+  } 
+  
+  main section {
+    margin-bottom: 170px; /* Espacement de 170px entre les sections */
+  }
+  
+  main section h1,
+  main section h2,
+  main section h3,
+  main section h4,
+  main section h5,
+  main section h6 {
+    margin-top: 50px; /* Espacement de 50px entre le titre de la section et le contenu */
+    margin-bottom: 0; /* Réinitialisation de la marge inférieure pour éviter un double espacement */
+  }
+  
+  header {
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; /* Espacement entre les éléments */
+    align-items: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  /* Navigation */
+  nav {
+    flex: 1; /* Utilise l'espace disponible pour la navigation */
+    display: flex;
+    justify-content: center; /* Centre les éléments de la navigation horizontalement */
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-right: 20px;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  nav a:hover {
+    color: var(--link-hover-color);
+}
+  .right-menu {
+    display: flex;
+    align-items: center;
+  }
+  
+  .button {
+    padding: 8px 20px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .blue-button {
+    background-color: blue;
+    color: #fff;
+  }
+  /* Formulaire */
+  .search-form {
+    width: 500px;
+  }
+  
+  form {
+    width: 550px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  form label {
+    text-align: left;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  form input[type="text"],
+  form input[type="date"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Footer */
+  footer {
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto; /* Pour coller le footer en bas */
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  /* Avantages */
+  .aventage {
+    display: block;
+  }
+  
+  .aventage-cartes {
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+  }
+  
+  .carte {
+    width: 251px;
+    height: 420px;
+    border-width: 2px;
+    border-color: #333;
+    border-style: solid;
+    border-radius: 9px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 5px;
+  }
+  .carte hr{
+    color: #2e2323;
+    width: 90%;
+  }
+  
+  .carte img {
+    width: 240px;
+    height: 150px;
+  }
+  
+  .description {
+    width: 245px;
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .titel-carte {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
