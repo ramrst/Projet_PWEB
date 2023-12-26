@@ -19,10 +19,9 @@
 
 /* Body styles */
 body {
-    background-image: url('car_rental.jpg');
+    background-image: url('fermer-mobile-indications-carte.jpg');
+    background-repeat: no-repeat;
     background-size: cover;
-    background-position: center; /* This property centers the background image */
-    background-repeat: no-repeat; /* This property prevents the background image from repeating */
     display: flex;
     align-items: center;
     justify-content: center;
