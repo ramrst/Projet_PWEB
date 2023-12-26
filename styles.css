@@ -1,0 +1,345 @@
+/* Variables de couleur */
+:root {
+  --primary-color: #333;
+  --background-color: #c9d6ff;
+  --text-color: #fff;
+  --container-bg-color: #fff;
+  --container-shadow: rgba(0, 0, 0, 0.35);
+  --link-hover-color: #b1b9b8;
+  --form-bg-color: #eee;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh; /* Ensure the container takes the full height of the viewport */ 
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  background-color: #f4f4f4;
+  background-image: url('fermer-mobile-indications-carte.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed; /* Fixed background image */
+  backdrop-filter: blur(5px); /* Add a blur effect */
+}
+
+
+  
+  main {
+    text-align: center;
+    flex: 1; /* Pour que le contenu principal prenne tout l'espace restant */
+  } 
+  
+  main section {
+    margin-bottom: 170px; /* Espacement de 170px entre les sections */
+  }
+  
+  main section h1,
+  main section h2,
+  main section h3,
+  main section h4,
+  main section h5,
+  main section h6 {
+    margin-top: 0px; /* Espacement de 50px entre le titre de la section et le contenu */
+    margin-bottom: 0; /* Réinitialisation de la marge inférieure pour éviter un double espacement */
+  }
+
+  header {
+    width: 101%;
+    background-color: #333;
+    color: #fff;
+    /*position: fixed;*/
+    display: flex;
+    justify-content: space-between; /* Espacement entre les éléments */
+    align-items: center;
+  }
+  header h1{
+    padding: 10px;
+    color:#f4f4f4;
+  }
+  /* Navigation */
+  nav {
+    flex: 1; /* Utilise l'espace disponible pour la navigation */
+    display: flex;
+    justify-content: center; /* Centre les éléments de la navigation horizontalement */
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-right: 20px;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  nav a:hover {
+    color: var(--link-hover-color);
+}
+  .right-menu {
+    display: flex;
+    align-items: center;
+  }
+  
+  .button {
+    padding: 8px 20px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 30px;
+  }
+  
+  .blue-button {
+    display: inline-block;
+    outline: 0;
+    appearance: none;
+    padding: 0px 12px;
+    margin-right: 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: rgb(249, 251, 250);
+    border: 1px solid rgb(137, 151, 155);
+    box-shadow: rgb(6 22 33 / 30%) 0px 1px 2px;
+    color: rgb(61, 79, 88);
+    font-size: 14px;
+    font-weight: 400;
+    height: 36px;
+    transition: all 150ms ease-in-out 0s;
+  }
+  .blue-button:hover {
+    color: rgb(61, 79, 88);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(93, 108, 116);
+    box-shadow: rgb(0 0 0 / 30%) 0px 4px 4px, rgb(231 238 236) 0px 0px 0px 3px;
+}
+  .trt{
+    margin-top: 40px;
+  }
+  .trt h3 {
+    font-size: 35px;
+    color:rgb(245, 245, 245);
+  }
+  .trt h1{
+    font-size: 38px;
+    color:#eee;
+  }
+  .trt p{
+    font-size: 16px;
+    color:#f0f0f0;
+  }
+  /* Formulaire */
+.search-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+form {
+  width: 550px;
+  background-color: rgba(255, 255, 255, 0.8); /* Set the last value (0.8) for transparency (0 is fully transparent, 1 is fully opaque) */
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+form label {
+  text-align: left;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+  form input[type="text"],
+  form input[type="date"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #0056b3;
+  }
+  .carrefour {
+    margin-top: 0px;
+    text-align: center;
+  }
+  /* Avantages */
+  .aventage {
+    display: block;
+  }
+  
+  .aventage-cartes {
+    display: flex;
+    margin-top: 0px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+  }
+  .aventage-cartes {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+  }
+
+.carte {
+  background-color: rgb(255, 255, 255); /* Slightly transparent white background */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Added transition for background-color */
+  margin: 10px;
+  padding: 10px;
+}
+
+.carte:hover {
+  box-shadow: 0 8px 16px rgba(195, 195, 195, 0.982);
+}
+
+.titel-carte {
+  background-color: rgba(51, 51, 51, 0.8); /* Transparent dark gray background for the title */
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 20px;
+}
+.project-image {
+  align-items: center;
+  max-width: 100%; /* Ensure the image does not exceed its container */
+  height: auto; /* Maintain the aspect ratio */
+}
+
+
+hr {
+    margin: 0;
+    border: 0;
+    height: 1px;
+    background: #ddd;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.description {
+    padding: 15px;
+    text-align: justify;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.carte {
+    animation: fadeIn 0.8s ease-in-out;
+}
+  .carte img {
+    width: 240px;
+    height: 150px;
+  }
+  
+  .description {
+    width: 245px;
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .titel-carte {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+  .presentation {
+    text-align: center;
+    padding: 50px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    border-radius: 8px;
+    opacity: 0; /* Initial opacity for fade-in effect */
+    animation: fadeIn 1s forwards; /* Animation for fade-in effect */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+h1 {
+    color: #333;
+}
+
+.contain {
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+.contain p {
+    transition: background-color 0.3s ease;
+}
+
+.contain p:hover {
+    background-color: #f0f0f0;
+}
+/* Footer */
+footer {
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  margin-top: auto; /* Pour coller le footer en bas */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
