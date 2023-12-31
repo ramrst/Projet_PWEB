@@ -195,52 +195,55 @@ form label {
     margin-top: 0px;
     text-align: center;
   }
-  /* Avantages */
-  .aventage {
-    display: block;
-  }
-  
+
+ /*avantages*/
   .aventage-cartes {
     display: flex;
-    margin-top: 0px;
+    margin-top: 100px;
     justify-content: center;
     align-items: center;
     margin-bottom: 100px;
   }
-  .aventage-cartes {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
+  
+  .carte {
+    display: block;
+    width: 251px;
+
+    margin-right: auto;
+    text-align: center;
   }
-
-.carte {
-  background-color: rgb(255, 255, 255); /* Slightly transparent white background */
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Added transition for background-color */
-  margin: 10px;
-  padding: 10px;
+  
+  
+  
+  .description {
+    text-align: left;
+    width: 345px;
+    height: 190px;
+    margin-top: -25px;
+   
+  }
+  
+  .titel-carte {
+    display: flex;
+    align-items: center;
+    justify-content:left;
+    width: 310px;
+    
+    margin-bottom: 5px;
+    margin-top: 10px;
+  }
+  
+  .titel-carte img {
+    color:#0056b3;
+    width: 35px;
+    height: 35px;
+  margin-right: 5px;
+margin-top: -35px;
 }
 
-.carte:hover {
-  box-shadow: 0 8px 16px rgba(195, 195, 195, 0.982);
-}
-
-.titel-carte {
-  background-color: rgba(51, 51, 51, 0.8); /* Transparent dark gray background for the title */
-  color: #fff;
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
-  border-radius: 20px;
-}
-.project-image {
-  align-items: center;
-  max-width: 100%; /* Ensure the image does not exceed its container */
-  height: auto; /* Maintain the aspect ratio */
-}
+  .titel-carte h5 {
+    color:#1b0346;
+  margin-top: 25px;}
 
 
 hr {
@@ -271,35 +274,10 @@ img {
     }
 }
 
-.carte {
-    animation: fadeIn 0.8s ease-in-out;
-}
-  .carte img {
-    width: 240px;
-    height: 150px;
-  }
-  
-  .description {
-    width: 245px;
-    height: 190px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .titel-carte {
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    margin-bottom: 20px;
-    margin-top: 10px;
-  }
   .presentation {
     text-align: center;
     padding: 50px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 20px;
     border-radius: 8px;
@@ -332,6 +310,50 @@ h1 {
 .contain p:hover {
     background-color: #f0f0f0;
 }
+section.marche {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding-top: 20px;
+  border-radius: 5px;
+}
+
+/* Mettre les éléments de la classe passager et conducteur sans espacement des bords gauche et droit de la page avec symétrie */
+.psg-cnd {
+  display: flex;
+  justify-content: space-between;
+  padding: 0; /* Supprime tout espacement à gauche et à droite de .psg-cnd */
+  box-sizing: border-box; /* Garantit que la taille inclut le padding */
+}
+
+.passager, .conducteur {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%; /* Chaque élément occupe 50% de l'espace disponible */
+  /* Ajustez la largeur si nécessaire en fonction du contenu */
+}
+
+/* Mettre les éléments de la classe étape côte à côte */
+.etape {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 60px;
+}
+
+
+.etape img{
+  width: 155px;
+  height: 149px;}
+
+  .etape p{
+    margin-left: 35px;
+    margin-top: 45px;
+    width: 250px;
+    height: auto;
+  }
+  
+
 /* Footer */
 footer {
   width: 100%;
