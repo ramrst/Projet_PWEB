@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+   
+    <link rel="stylesheet" href="ridespages.css" />
+    <link rel="stylesheet" href="../homePage/styles.css" />
+   
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <h1>NSOGO</h1>
+     
+      <nav>
+        <div class="left-menu">
+          <ul>
+            <li><a href="../homePage/index.html">Accueil</a></li>
+            <li><a href="../homePage/index.html#presentation">Présentation</a></li>
+            <li><a href="../homePage/index.html#aventage">Aventages</a></li>
+           
+            <li><a href="#">Trajet </a></li>
+            <li><span id="user"></span></li>
+          </ul>
+        </div>
+      </nav>
+      <button class="blue-button" id="connexionbutton">Connexion</button>
+      <div class="right-menu" id="right-menu">
+        <div id="user">
+          <div id="userAvatar"></div>
+          <div id="userInfo"></div>
+        </div>
+        <ul id="drop_down" class="drop_down">
+          <li>
+            <a href="#">
+              <img src="../icons/reservation.png" alt="Mes Reservation" />
+              <p>Mes Reservations</p>
+              <p class="arrow">></p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="../icons/route.png" alt="Mes trajets" />
+              <p>Mes trajets</p>
+              <p class="arrow">></p>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" id="signout">
+              <img src="../icons/sortie.png" alt="Mes trajets" />
+              <p>Deconnexion</p>
+              <p class="arrow">></p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <div 
+      class="topSection"
+    >
+    <form id="FormTrajet">
+      <!-- Departure Location -->
+      
+        <div class="form-group">
+       
+
+          <input type="text" id="departureInput" name="departureInput" 
+            placeholder="Lieu de départ"
+          
+          />
+          <ul id="suggestionsList" class="suggestionsList"></ul>
+        </div>
+
+        <!-- Arrival Location -->
+        <div class="form-group">
+          
+          <input type="text" id="arrivalInput" name="arrivalInput" 
+            placeholder="Lieu d'arrivée"
+
+          />
+          <ul id="suggestionsList1" class="suggestionsList"></ul>
+        </div>
+      
+      
+        <div class="form-group">
+          
+          <input type="date" id="date_depart" name="date_depart" required 
+            placeholder="Date de départ"
+          
+          />
+          
+        </div>
+        <div class="form-group">
+          
+          <input
+            type="number"
+            id="nbre_passager"
+            name="nbre_passager"
+            min="1"
+            max="4"
+            placeholder="Nombre de place disponible"
+          />
+       
+        </div>
+     
+        <div class="form-group">
+
+          <button type="submit">Rechercher</button>
+        </div>
+    </form>
+      <button "
+        type="button"
+        class="ajouter_trajet_btn"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+       Proposer un trajet 
+      </button>
+    </div>
+    <div class="modal" tabindex="-1" id="exampleModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Proposer un trajet </h5>
+            <button 
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="../backend/php/addRide.php" method="POST" id="FormModal">
+              <!-- Departure Location -->
+              <div id="depart_arrivee">
+                <div class="form-group">
+                  <label for="departureInput">Lieu de départ :</label>
+      
+                  <input type="text" id="departureInput" name="departureInput" />
+                  <ul id="suggestionsList" class="suggestionsList"></ul>
+                </div>
+      
+                <!-- Arrival Location -->
+                <div class="form-group">
+                  <label for="arrivalInput">Lieu d'arrivée :</label>
+                  <input type="text" id="arrivalInput" name="arrivalInput" />
+                  <ul id="suggestionsList1" class="suggestionsList"></ul>
+                </div>
+              </div>
+              <div class="form_date_nbrPass">
+                <div>
+                  <label for="date_depart">Date de départ :</label>
+                  <input type="date" id="date_depart" name="date_depart" required />
+                  
+                </div>
+                <div>
+                  <label for="date_depart">Heure de départ :</label>
+                  <input type="time" id="time_depart" name="time_depart" required />
+                  
+                </div>
+                <div>
+                  <label for="numbre_de_passager">Nombre de place disponible :</label>
+                  <input
+                    type="number"
+                    id="nbre_passager"
+                    name="nbre_passager"
+                    min="1"
+                  />
+                 
+                </div>
+              </div>
+              <div class="form_price">
+                <label for="prix">Prix par place :</label>
+                <input type="number" id="prix" name="price" min="1" />
+               
+              </div>
+      
+              <button type="submit">Ajputer un trajet</button>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="results-filters">
+      <div class="filters">
+        <div class="filter-sort">
+            <p>Trier par : </p>
+            <div class="clear-all" id="clear_all">Tout effacer</div>
+        </div>
+        <div class="filter">
+            <fieldset>
+                <legend>Place</legend>
+                <div class="rounded-radio-container">
+                    <label for="placeAsc">Croissant</label>
+                    <input type="radio" id="placeAsc" name="place" value="asc" class="rounded-radio">
+                </div>
+                <div class="rounded-radio-container">
+                    <label for="placeDesc">Décroissant</label>
+                    <input type="radio" id="placeDesc" name="place" value="desc" class="rounded-radio">
+                </div>
+            </fieldset>
+        </div>
+        <div class="filter">
+            <fieldset>
+                <legend>Prix</legend>
+                <div class="rounded-radio-container">
+                    <label for="priceAsc">Croissant</label>
+                    <input type="radio" id="priceAsc" name="price" value="asc" class="rounded-radio">
+                </div>
+                <div class="rounded-radio-container">
+                    <label for="priceDesc">Décroissant</label>
+                    <input type="radio" id="priceDesc" name="price" value="desc" class="rounded-radio">
+                </div>
+            </fieldset>
+        </div>
+        <div class="filter">
+            <fieldset>
+                <legend>Date</legend>
+                <!-- Keep checkboxes for "Date" group as requested -->
+                <div class="rounded-radio-container">
+                  <label for="today">Aujourd'hui</label>
+                  <input type="radio" id="today" name="date" value="today" class="rounded-radio">
+                
+                </div>
+                <div class="rounded-radio-container">
+                  <label for="tomorrow">Demain</label>
+                  <input type="radio" id="tomorrow" name="date" value="tomorrow" class="rounded-radio">
+                </div>
+                <div class="rounded-radio-container">
+                  <label for="thisWeek">Cette semaine</label>
+                  <input type="radio" id="thisWeek" name="date" value="thisWeek" class="rounded-radio">
+                </div>
+                <div class="rounded-radio-container">
+                  <label for="thisMonth">Ce mois</label>
+                  <input type="radio" id="thisMonth" name="date" value="thisMonth" class="rounded-radio">
+                </div>
+              
+
+               
+            </fieldset>
+        </div>
+        <div class="filter">
+            <label for="wilaya">Wilaya de depart</label>
+            <select name="wilaya" id="wilaya">
+                <option value="">Toutes les wilayas</option>
+                
+                <option value="Adrar">Adrar</option>
+                <option value="Chlef">Chlef</option>
+                <option value="Laghouat">Laghouat</option>
+                <option value="Oum El Bouaghi">Oum El Bouaghi</option>
+                <option value="Batna">Batna</option>
+                <option value="Bejaia">Bejaia</option>
+                <option value="Biskra">Biskra</option>
+                <option value="Bechar">Bechar</option>
+                <option value="Blida">Blida</option>
+                <option value="Bouira">Bouira</option>
+                <option value="Tamanrasset">Tamanrasset</option>
+                <option value="Tebessa">Tebessa</option>
+                <option value="Tlemcen">Tlemcen</option>
+                <option value="Tiaret">Tiaret</option>
+                <option value="Tizi Ouzou">Tizi Ouzou</option>
+                <option value="Algiers">Algiers</option>
+                <option value="Djelfa">Djelfa</option>
+                <option value="Jijel">Jijel</option>
+                <option value="Setif">Setif</option>
+                <option value="Saïda">Saïda</option>
+                <option value="Skikda">Skikda</option>
+                <option value="Sidi Bel Abbes">Sidi Bel Abbes</option>
+                <option value="Annaba">Annaba</option>
+                <option value="Guelma">Guelma</option>
+                <option value="Constantine">Constantine</option>
+                <option value="Medea">Medea</option>
+                <option value="Mostaganem">Mostaganem</option>
+                <option value="Msila">Msila</option>
+                <option value="Mascara">Mascara</option>
+                <option value="Ouargla">Ouargla</option>
+                <option value="Oran">Oran</option>
+                <option value="El Bayadh">El Bayadh</option>
+                <option value="Illizi">Illizi</option>
+                <option value="Bordj Bou Arreridj">Bordj Bou Arreridj</option>
+                <option value="Boumerdes">Boumerdes</option>
+                <option value="El Tarf">El Tarf</option>
+                <option value="Tindouf">Tindouf</option>
+                <option value="Tissemsilt">Tissemsilt</option>
+                <option value="El Oued">El Oued</option>
+                <option value="Khenchela">Khenchela</option>
+                <option value="Souk Ahras">Souk Ahras</option>
+                <option value="Tipaza">Tipaza</option>
+                <option value="Mila">Mila</option>
+                <option value="Aïn Defla">Aïn Defla</option>
+                <option value="Naama">Naama</option>
+                <option value="Aïn Temouchent">Aïn Temouchent</option>
+                <option value="Ghardaia">Ghardaia</option>
+                <option value="Relizane">Relizane</option>
+                <option value="Timimoun">Timimoun</option>
+                <option value="Bordj Badji Mokhtar">Bordj Badji Mokhtar</option>
+                <option value="Ouled Djellal">Ouled Djellal</option>
+                <option value="Béni Abbès">Béni Abbès</option>
+                <option value="In Salah">In Salah</option>
+                <option value="In Guezzam">In Guezzam</option>
+                <option value="Touggourt">Touggourt</option>
+                <option value="Djanet">Djanet</option>
+                <option value="El M’Ghaier">El M’Ghaier</option>
+                <option value="El Meniaa">El Meniaa</option>
+            </select>
+        </div>
+        <div style="width: 50%; align-self: center;align-items: center; justify-content: center; ">
+            <div  class="clear-all" id="apply_filters" >Appliquer</div>
+        </div>
+       
+    </div>
+      <div id="result"></div>
+      
+    </div>
+    
+    <footer>
+      <p>&copy; 2023 Covoiturage | Contactez-nous : contact@covoiturage.com</p>
+    </footer>
+    <script src="Filters.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../places.js? v=1.1"></script>
+    <script src="rides.js?v=1.1" defer></script>
+    <script src="sortRides.js" defer></script>
+    <script src="searchRide.js?v=1.1s"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../signout.js" type="module"></script>
+    
+  </body>
+</html>

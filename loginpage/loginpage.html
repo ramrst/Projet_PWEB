@@ -1,70 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-  <title>Accueil - Covoiturage</title>
-  <link rel="stylesheet" href="loginpagestyle.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accueil - Covoiturage</title>
+    <link rel="stylesheet" href="loginpagestyle.css" />
+  </head>
+  <body>
     <header>
-        <h1>Nsogo</h1>
-        <nav>
-          <div class="left-menu">
-            <ul>
-              <li><a href="#">Accueil</a></li>
-              <li><a href="#presentation">Présentation</a></li>
-              <li><a href="#aventage">aventages</a></li>
-            </ul>
-          </div>
-        </nav>
+      <h1>Nsogo</h1>
+      <nav>
+        <div class="left-menu">
+          <ul>
+            <li><a href="../homePage/index.html">Accueil</a></li>
+
+            <li>
+              <a href="../homePage/index.html#presentation">Présentation</a>
+            </li>
+            <li><a href="../homePage/index.html#aventage">aventages</a></li>
+          </ul>
+        </div>
+      </nav>
     </header>
-    <div class="image">
-    </div>
+    <div class="image"></div>
     <div class="container" id="container">
-        <!-- Utilisation de classes BEM pour les formulaires -->
-        <div class="form-container sign-up">
-            <form>
-                <h1>Creer un compte</h1>
-                <input type="text" placeholder="Nom" required>
-                <input type="text" placeholder="Prénom" required>
-                <input type="text" placeholder="Numéro de téléphone" required>
-                <input type="text" placeholder="Matricule d'étudiant" required>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Insérer le mot de passe" required>
-                <input type="text" placeholder="Confirmer le mot de passe" required>
-                <button type="submit">s'inscrire</button>
+      <!-- Utilisation de classes BEM pour les formulaires -->
 
-            </form>
-        </div>
+      <div class="form-container sign-up">
+        <form id="register-form">
+          <h1>Creer un compte</h1>
+          <input type="text" id="Nom" placeholder="Nom" required />
+          <input type="text" id="Prenom" placeholder="Prénom" required />
+          <input
+            type="text"
+            id="Num_tel"
+            placeholder="Numéro de téléphone"
+            maxlength="10"
+            required
+          />
 
-        <div class="form-container sign-in">
-            <form>
-                <h1>Se connecter</h1>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Mot de passe" required>
-                <a href="#">Mot de passe oublié?</a>
-                <button type="submit">Se connecter</button>
-            </form>
-        </div>
+          <input
+            type="text"
+            id="Matricule"
+            placeholder="Matricule d'étudiant"
+            maxlength="12"
+            required
+          />
+          <input
+            type="email"
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            id="register_email"
+            name="Email"
+            placeholder="Email"
+            required
+          />
+          <input
+            id="register_password"
+            name="Password"
+            type="password"
+            placeholder="Insérer le mot de passe"
+            required
+          />
+          <input
+            id="ConfirmPassword"
+            type="text"
+            placeholder="Confirmer le mot de passe"
+            required
+          />
+          <button type="submit">s'inscrire</button>
+        </form>
+      </div>
 
-        <div class="toggle-container">
-            <div class="toggle">
-                <div class="toggle-panel toggle-left">
-                    <h1>Content de te revoir!</h1>
-                    <p>Entrez vos coordonnées personnelles pour utiliser toutes les fonctionnalités du site.</p>
-                    <button class="hidden" id="login">Se connecter</button>
-                </div>
-                <div class="toggle-panel toggle-right">
-                    <h1>Bonjour !</h1>
-                    <p>Inscrivez-vous avec vos informations personnelles pour utiliser toutes les fonctionnalités du site</p>
-                    <button class="hidden" id="register">s'inscrire</button>
-                </div>
-            </div>
+      <div class="form-container sign-in">
+        <form id="login-form">
+          <h1>Se connecter</h1>
+          <input type="email" placeholder="Email" id="login_email" required />
+          <input
+            type="password"
+            placeholder="Mot de passe"
+            id="login_password"
+            required
+          />
+          <a href="#">Mot de passe oublié?</a>
+          <button type="submit">Se connecter</button>
+        </form>
+      </div>
+
+      <div class="toggle-container">
+        <div class="toggle">
+          <div class="toggle-panel toggle-left">
+            <h1>Content de te revoir!</h1>
+            <p>
+              Entrez vos coordonnées personnelles pour utiliser toutes les
+              fonctionnalités du site.
+            </p>
+            <button class="hidden" id="login">Se connecter</button>
+          </div>
+          <div class="toggle-panel toggle-right">
+            <h1>Bonjour !</h1>
+            <p>
+              Inscrivez-vous avec vos informations personnelles pour utiliser
+              toutes les fonctionnalités du site
+            </p>
+            <button class="hidden" id="register">s'inscrire</button>
+          </div>
         </div>
+      </div>
     </div>
     <footer>
-        <p>&copy; 2023 Covoiturage | Contactez-nous : contact@covoiturage.com</p>
+      <p>&copy; 2023 Covoiturage | Contactez-nous : contact@covoiturage.com</p>
     </footer>
-    <script src="script.js"></script>
-</body>
-<html>
+    <script src="Authentification.js?v=1.1" type="module"></script>
+    <script src="script.js?v=1.1"></script>
+  </body>
+</html>

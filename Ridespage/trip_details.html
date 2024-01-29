@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trip Details</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1.5em;
+        width: 100%;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        width: 100%;
+      }
+
+      section {
+        margin-bottom: 30px;
+        width: 50%;
+        max-width: 800px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+      section label {
+        margin-right: 25px;
+        color: #727171;
+      }
+      section > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        width: 100%;
+      }
+      section > div > p {
+        color: #333;
+        font-size: 20px;
+        font-weight: 700;
+      }
+      form p {
+        color: #333;
+        font-size: 20px;
+        font-weight: 700;
+        margin-left: 20px;
+        text-align: center;
+      }
+      #tripDate {
+        color: #333;
+        font-size: 2em;
+      }
+
+      label {
+        display: block;
+
+        color: #555;
+      }
+
+      input {
+        width: 100%;
+        height: 40px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 18px;
+        font-weight: 600;
+        outline: none;
+      }
+      input[type="number"] {
+        width: 100%;
+        text-align: center;
+      }
+      form {
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+      }
+      button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        text-align: center;
+        text-decoration: none;
+        width: 100%;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        align-self: center;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+      /* Footer */
+      footer {
+        width: 100%;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        margin-top: auto; /* Pour coller le footer en bas */
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+      #AT {
+        color: #555;
+        font-size: 15px;
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+      #driver_info_con {
+        border-top: 5px solid #ccc;
+        border-bottom: 5px solid #ccc;
+        border-radius: 2px;
+        flex-direction: column !important;
+        margin-top: 10px;
+        padding-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Trip Details</h1>
+    </header>
+
+    <main>
+      <section id="tripDetails">
+        <h2 id="tripDate"></h2>
+        <div>
+          <label for="tripId">Trip ID:</label>
+          <p id="tripId"></p>
+        </div>
+        <div>
+          <label for="departure">FROM :</label>
+          <p id="departure"></p>
+        </div>
+        <div>
+          <label for="destination">TO:</label>
+          <p id="destination"></p>
+        </div>
+        <div>
+          <label for="driver">Driver:</label>
+          <p id="driver"></p>
+        </div>
+
+        <div id="driver_info_con">
+          <h2>prix par place</h2>
+          <p type="text" id="prix"></p>
+        </div>
+
+        <h2>Reservation</h2>
+        <form id="reservationForm">
+          <label for="passengerName">Nombre de personnes :</label>
+          <input
+            type="number"
+            id="passagers_number"
+            name="passagers_number"
+            value="0"
+            min="1"
+            max="4"
+            required
+          />
+          <div>
+            <label for="numPersons">Prix total:</label>
+            <p id="prix_total" required></p>
+          </div>
+
+          <button type="submit">Reserver</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2023 Covoiturage | Contactez-nous : contact@covoiturage.com</p>
+    </footer>
+
+    <script>
+      var tripDetails = JSON.parse(sessionStorage.getItem("tripDetails"));
+      console.log(tripDetails);
+      document.getElementById("tripId").innerHTML = tripDetails.code_trajet;
+      document.getElementById("departure").innerHTML = `
+        ${
+          tripDetails.lieu_depart
+        }  <span id="AT">AT</span> <span id="tripTime"> ${tripDetails.heure_depart.substring(
+        0,
+        5
+      )} </span>
+      `;
+      document.getElementById("destination").innerHTML =
+        tripDetails.destination;
+      document.getElementById("prix").innerHTML = tripDetails.prix + " DA";
+
+      document.getElementById("tripDate").innerHTML = getDate(
+        tripDetails.date_depart
+      );
+      document.getElementById("prix_total").innerHTML =
+        tripDetails.prix * document.getElementById("passagers_number").value +
+        " DA";
+      document
+        .getElementById("passagers_number")
+        .addEventListener("change", function () {
+          document.getElementById("prix_total").innerHTML =
+            tripDetails.prix *
+              document.getElementById("passagers_number").value +
+            " DA";
+        });
+      document.getElementById("driver").innerHTML =
+        tripDetails.nom + " " + tripDetails.prenom;
+
+      console.log(tripDetails.heure_depart);
+
+      function getDate(date) {
+        const dateObj = new Date(date);
+
+        const d = dateObj.getDate();
+        const month = dateObj.getMonth() + 1;
+        const year = dateObj.getFullYear();
+        let day = dateObj.getDay();
+        const m = [
+          "Janvier",
+          "Février",
+          "Mars",
+          "Avril",
+          "Mai",
+          "Juin",
+          "Juillet",
+          "Août",
+          "Septembre",
+          "Octobre",
+          "Novembre",
+          "Décembre",
+        ];
+
+        switch (day) {
+          case 0:
+            day = "Dimanche";
+            break;
+
+          case 1:
+            day = "Lundi";
+            break;
+
+          case 2:
+            day = "Mardi";
+            break;
+
+          case 3:
+            day = "Mercredi";
+            break;
+
+          case 4:
+            day = "Jeudi";
+            break;
+          case 5:
+            day = "Vendredi";
+            break;
+          case 6:
+            day = "Samedi";
+            break;
+        }
+
+        return `${day} ${d} , ${m[month - 1]} ${year}`;
+      }
+
+      document
+        .getElementById("reservationForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const numberOfSeats =
+            document.getElementById("passagers_number").value;
+          const rideId = tripDetails.code_trajet;
+          makeReservation(rideId, numberOfSeats);
+        });
+      function makeReservation(rideId, numberOfSeats) {
+        // Appeler la fonction pour effectuer une requête AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "makeReservation.php", true);
+        xhr.setRequestHeader(
+          "Content-Type",
+          "application/x-www-form-urlencoded"
+        );
+        // only date is needed for the reservation date (not time)
+
+        const currentDate = new Date().toISOString().slice(0, 10);
+        var postData =
+          "code_trajet=" +
+          encodeURIComponent(rideId) +
+          "&nombre_places=" +
+          encodeURIComponent(numberOfSeats) +
+          "&date_reservation=" +
+          encodeURIComponent(currentDate);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            // Handle the response from the server if needed
+            console.log(xhr.responseText);
+          }
+        };
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            // Handle the response from the server if needed
+            console.log(xhr.responseText);
+          }
+        };
+
+        xhr.send(postData);
+        return false;
+      }
+    </script>
+  </body>
+</html>

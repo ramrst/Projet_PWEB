@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../homePage/styles.css" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Nsogo</h1>
+      <nav>
+        <div class="left-menu">
+          <ul>
+            <li><a href="../homePage/index.html">Accueil</a></li>
+            <li>
+              <a href="../homePage/index.html#presentation">Présentation</a>
+            </li>
+            <li><a href="../homePage/index.html#aventage">aventages</a></li>
+            <li>
+              <a href="../Ridespage/ridespage.html" id="trajetsLink">Trajets</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <button class="blue-button" id="connexionbutton">Connexion</button>
+      <div class="right-menu" id="right-menu">
+        <div id="user">
+          <div id="userAvatar"></div>
+          <div id="userInfo"></div>
+        </div>
+        <ul id="drop_down" class="drop_down">
+          <li>
+            <a href="#">
+              <img src="../icons/reservation.png" alt="Mes Reservation" />
+              <p>Mes Reservations</p>
+              <p class="arrow">></p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="../icons/route.png" alt="Mes trajets" />
+              <p>Mes trajets</p>
+              <p class="arrow">></p>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" id="signout">
+              <img src="../icons/sortie.png" alt="Mes trajets" />
+              <p>Deconnexion</p>
+              <p class="arrow">></p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <table class="md-table" id="md-table" style="width: 100%">
+      <thead>
+        <tr class="md-table-headers-row">
+          <th class="md-table-header">Coode trajet</th>
+          <th class="md-table-header">Lieu De Depart</th>
+          <th class="md-table-header">Lieu D'arrivée</th>
+          <th class="md-table-header">Date De Depart</th>
+          <th class="md-table-header">Places Proposees</th>
+          <th class="md-table-header">Places Reserver</th>
+
+          <th class="md-table-header">Prix Par Place</th>
+          <th class="md-table-header">Montant Total</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+    <!--<div class="md-table-footer">
+      <div>
+        <button class="md-primary md-hue-2" disabled aria-label="Previous Page">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <a href="#">
+          <button class="md-primary md-hue-2 md-table-footer-item">
+            <p id="pageIndex" class="md-table-active-page">1</p>
+          </button>
+        </a>
+        <button class="md-primary md-hue-2" aria-label="Next Page">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>!-->
+
+    <script src="script.js"></script>
+  </body>
+</html>
