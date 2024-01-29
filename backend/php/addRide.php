@@ -34,7 +34,7 @@ if ($conn->connect_error) {
     if ($stmt->execute()) {
         $stmt->close();
         echo "<script>alert('Ride added successfully!')</script>";
-        header("location: ridespage.html");
+        header("location: ../../Ridespage/ridespage.html");
         exit();
 
     }   else {

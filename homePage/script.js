@@ -29,3 +29,12 @@ function handleTrajetFormSubmit(event) {
 }
 
 // Close the drop-down menu if the user clicks outside of it
+const currentDate = new Date().toISOString().split("T")[0];
+
+// Get all input elements with type="date"
+const dateInputs = document.querySelectorAll('input[type="date"]');
+
+// Loop through each date input and set the min attribute to the current date
+dateInputs.forEach((input) => {
+  input.min = currentDate;
+});

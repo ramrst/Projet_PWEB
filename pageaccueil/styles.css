@@ -1,0 +1,64 @@
+body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .main-content {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #3498db;
+    }
+
+    .trip {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 15px;
+    }
+
+    .user-photo {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+      object-fit: cover;
+    }
+
+    .trip-details {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .user-details {
+      flex-grow: 1;
+    }
+
+    .rating {
+      color: #f39c12;
+    }
+
+    button {
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }

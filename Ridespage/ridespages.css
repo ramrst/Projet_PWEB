@@ -251,3 +251,45 @@ select {
 footer {
   margin-top: 5rem;
 }
+#departureInput,
+#arrivalInput {
+  width: 100%;
+  padding: 10px;
+  flex: 1;
+  border: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  font-size: 16px;
+}
+#date_depart {
+  width: 50%;
+  padding: 10px;
+  flex: 1;
+  border: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  font-size: 16px;
+}
+#time_depart,
+#nbre_passager,
+#prix {
+  width: 50% !important;
+  padding: 10px;
+  flex: 1;
+  border: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  font-size: 16px;
+}
+#submit {
+  margin-top: 20px;
+  align-self: center;
+  width: 40% !important;
+}
+#FormModal {
+  display: flex;
+  flex-direction: column;
+}

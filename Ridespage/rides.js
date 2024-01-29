@@ -323,3 +323,13 @@ function get_sessionData() {
     };
   });
 }
+// set input min date to current date
+const currentDate = new Date().toISOString().split("T")[0];
+
+// Get all input elements with type="date"
+const dateInputs = document.querySelectorAll('input[type="date"]');
+
+// Loop through each date input and set the min attribute to the current date
+dateInputs.forEach((input) => {
+  input.min = currentDate;
+});

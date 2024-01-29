@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1.5em;
+            width: 100%;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+        /* Footer */
+footer {
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  margin-top: auto; /* Pour coller le footer en bas */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Trip Details</h1>
+    </header>
+
+    <main>
+        <section id="tripDetails">
+            <h2>Trip Information</h2>
+            <label for="tripId">Trip ID:</label>
+            <input type="text" id="tripId" readonly>
+
+            <label for="departure">From:</label>
+            <input type="text" id="departure" readonly>
+
+            <label for="destination">To:</label>
+            <input type="text" id="destination" readonly>
+        </section>
+
+        <section id="driverDetails">
+            <h2>Driver Information</h2>
+            <label for="driver">Driver:</label>
+            <input type="text" id="driver" readonly>
+        </section>
+
+        <section id="reservationForm">
+            <h2>Reservation</h2>
+            <form id="reservationForm">
+                <label for="passengerName">Passenger Name:</label>
+                <input type="text" id="passengerName" name="passengerName" required>
+
+                <label for="numPersons">Number of Persons:</label>
+                <input type="number" id="numPersons" name="numPersons" min="1" max="5" required>
+
+                <button type="submit">Confirm Reservation</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Covoiturage | Contactez-nous : contact@covoiturage.com</p>
+    </footer>
+
+    <script>
+        function getURLParameters() {
+            var searchParams = new URLSearchParams(window.location.search);
+            return Object.fromEntries(searchParams.entries());
+        }
+
+        var tripDetails = getURLParameters();
+        document.getElementById('tripId').value = tripDetails.id;
+        document.getElementById('departure').value = tripDetails.from;
+        document.getElementById('destination').value = tripDetails.to;
+        document.getElementById('driver').value = tripDetails.driver;
+
+        document.getElementById('reservationForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var passengerName = document.getElementById('passengerName').value;
+            var numPersons = document.getElementById('numPersons').value;
+            // Add your logic for handling the reservation here
+        });
+    </script>
+
+</body>
+</html>

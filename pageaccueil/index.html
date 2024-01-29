@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Trips</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1.5em;
+            width: 100%;
+        }
+
+        #main2 {
+            display: flex;
+            align-items: flex-start;
+            padding: 30px;
+            width: 100%;
+            box-sizing: border-box;
+            justify-content: center;
+        }
+         /* Formulaire */
+        .search-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0px;
+            margin-top: 20px;
+        }
+
+form {
+  width: 550px;
+  background-color: rgba(255, 255, 255, 0.8); /* Set the last value (0.8) for transparency (0 is fully transparent, 1 is fully opaque) */
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+form label {
+  text-align: left;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+  form input[type="text"],
+  form input[type="date"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #0056b3;
+  }
+ #numPersonsContainer {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        #numPersons {
+            width: 50px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            text-align: center;
+            margin-right: 10px;
+        }
+
+        .numButton {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .numButton:hover {
+            background-color: #0056b3;
+        }
+
+        #tripListContainer {
+            height: 500px; /* Set a fixed height for the list container */
+            overflow-y: auto; /* Enable vertical scrolling for the list container */
+            list-style: none;
+            padding: 10px;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 20px; /* Added margin for separation */
+        }
+
+        .trip {
+            background-color: #fff;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            padding: 20px;
+            cursor: pointer;
+            width: 300px;
+            text-align: left;
+            transition: transform 0.3s ease-in-out,
+            box-shadow 0.3s ease-in-out;
+        }
+
+        .trip:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .trip h2 {
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .trip p {
+            margin: 0;
+            font-size: 16px;
+            color: #666;
+        }
+
+        #map {
+            height: 500px;
+            width: 450px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        /* Footer */
+        footer {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin-top: auto; /* Pour coller le footer en bas */
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Explore Available Trips</h1>
+    </header>
+    <main id="main1">
+        <section class="search-form" id="search">
+            <div class="contain">
+                <form action="recherche_trajet.php" method="POST">
+                    <label for="lieu_depart">Lieu de départ :</label>
+                    <input type="text" id="lieu_depart" name="lieu_depart" required> <br>
+        
+                    <label for="lieu_arrivee">Lieu d'arrivée :</label>
+                    <input type="text" id="lieu_arrivee" name="lieu_arrivee" required><br><br>
+
+                    <label for="date_depart">Date de départ :</label>
+                    <input type="date" id="date_depart" name="date_depart" required><br><br>
+                    <div id="numPersonsContainer">
+                        <label for="numPersons">nombre des personne </label>
+                        <input type="text" id="numPersons" name="numPersons" value="1" readonly>
+                        <button type="button" class="numButton" onclick="updatePersons(false)">-</button>
+                        <button type="button" class="numButton" onclick="updatePersons(true)">+</button>
+                        </div>
+                    <br><br>
+                    <button type="submit">Rechercher</button>
+                    
+                </form>
+            </div>
+        </section>
+    </main>
+    <main id="main2">
+        <ul id="tripListContainer">
+            <!-- The list items will be dynamically added here -->
+        </ul>
+        <div id="map"></div>
+    </main>
+     <footer>
+        <p>&copy; 2023 Covoiturage | Contactez-nous : contact@covoiturage.com</p>
+    </footer>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvDlZmAHMIIZ6IxatsZ18AZ6stgNkCzHk&libraries=places"></script>
+    <script>
+        var trips = [
+            { id: 1, from: "alger", to: "skikda", time: "10:00 AM", driver: "John Doe", 
+              startLatLng: { lat: 36.7538, lng: 3.0588 }, endLatLng: { lat: 36.87617, lng: 6.90921 } },
+            { id: 2, from: "alger", to: "boumerdes", time: "12:30 PM", driver: "Yacine", 
+              startLatLng: { lat: 36.7538, lng: 3.0588 }, endLatLng: { lat: 36.7591, lng: 3.4731 } },
+            { id: 3, from: "alger", to: "blida", time: "2:00 PM", driver: "Bob Johnson", 
+              startLatLng: { lat: 36.7538, lng: 3.0588 }, endLatLng: { lat: 36.4736, lng: 2.8323 } },
+            { id: 3, from: "alger", to: "tipaza", time: "2:00 PM", driver: "Bob Johnson", 
+              startLatLng: { lat: 36.7538, lng: 3.0588 }, endLatLng: { lat: 36.5907, lng: 2.4434 } },
+            { id: 4, from: "alger", to: "laghouat", time: "2:00 PM", driver: "Hmida", 
+              startLatLng: { lat: 36.7538, lng: 3.0588 }, endLatLng: { lat: 33.8080, lng: 2.8629 } },
+            // Add more trip data as needed
+        ];
+
+        var selectedPolyline = null;
+
+        function displayTrips() {
+            var tripListContainer = document.getElementById("tripListContainer");
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 6,
+                center: { lat: 36.7538, lng: 3.0588 }
+            });
+
+            trips.forEach(function (trip) {
+                var listItem = document.createElement("li");
+                listItem.className = "trip";
+
+                var content = `<h2>${trip.from} to ${trip.to}</h2>
+                               <p><strong>Departure Time:</strong> ${trip.time}</p>
+                               <p><strong>Driver:</strong> ${trip.driver}</p>`;
+
+                listItem.innerHTML = content;
+                listItem.addEventListener('mouseenter', function () {
+                    if (selectedPolyline) {
+                        selectedPolyline.setMap(null);
+                    }
+
+                    var polyline = new google.maps.Polyline({
+                        path: [trip.startLatLng, trip.endLatLng],
+                        geodesic: true,
+                        strokeColor: '#FF0000',
+                        strokeOpacity: 1.0,
+                        strokeWeight: 4
+                    });
+
+                    polyline.setMap(map);
+                    selectedPolyline = polyline;
+                });
+                listItem.addEventListener('click', function () {
+                // Generate the URL with parameters
+                var detailsURL = `trip_details.html?id=${trip.id}&from=${trip.from}&to=${trip.to}&time=${trip.time}&driver=${trip.driver}`;
+
+    // Navigate to the details page
+    window.location.href = detailsURL;
+});
+
+
+                tripListContainer.appendChild(listItem);
+            });
+        }
+
+        window.onload = function () {
+            displayTrips();
+        };
+         // Function to increment the number of persons
+        function updatePersons(increment) {
+            var numPersonsInput = document.getElementById('numPersons');
+            var currentNumPersons = parseInt(numPersonsInput.value, 10);
+
+            if (increment && currentNumPersons < 5) {
+                numPersonsInput.value = currentNumPersons + 1;
+            } else if (!increment && currentNumPersons > 1) {
+                numPersonsInput.value = currentNumPersons - 1;
+            }
+        }
+    </script>
+</body>
+</html>
