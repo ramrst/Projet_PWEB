@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   get_sessionData()
     .then(({ success, data }) => {
-      console.log("data promise ", data.nom);
+      console.log("data promise ", data);
+      sessionStorage.setItem("user", JSON.stringify(data));
       document.getElementById(
         "userInfo"
       ).innerHTML = ` <p> ${data.nom} ${data.prenom} </p> <p id ="arrow" > > </p>`;
@@ -9,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "userAvatar"
       ).innerHTML = `<img src="https://eu.ui-avatars.com/api/?name=${data.nom}+${data.prenom}&background=fff&color=ccc&rounded=true&size=128" alt="avatar" class="avatar">`;
       document.getElementById("connexionbutton").style.display = "none";
+      document.getElementById("right-menu").style.display = "flex";
     })
     .catch((error) => {
       console.log("error promise ", error);

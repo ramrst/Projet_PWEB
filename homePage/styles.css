@@ -98,8 +98,8 @@ nav a:hover {
   color: #5a5a5a;
   text-decoration: none;
 }
-.right-menu {
-  display: flex;
+#right-menu {
+  display: none;
   align-items: center;
 }
 
@@ -577,4 +577,13 @@ section.marche {
   font-size: 30px;
   font-weight: 600;
   text-align: center;
+}
+#inbox {
+  margin-right: 20px;
+}
+
+#modal-body {
+  height: 400px !important;
+  overflow-y: scroll;
+  padding-bottom: 20px;
 }

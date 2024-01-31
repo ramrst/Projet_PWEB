@@ -4,8 +4,6 @@
 
 // Function to handle button click event
 
-// a promise to get session data from php file
-
 function navigateToAnotherPage() {
   // Change "targetPage.html" to the actual HTML page you want to navigate to
   window.location.href = "../loginpage/loginpage.html";
@@ -38,3 +36,5 @@ const dateInputs = document.querySelectorAll('input[type="date"]');
 dateInputs.forEach((input) => {
   input.min = currentDate;
 });
+
+// listen on the real time data base for added childeren

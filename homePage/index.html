@@ -16,6 +16,10 @@
       integrity="sha256-7gHJpsgk5BJHsd/tOfDnH0qKNCzmTMJ8zv+UYYw9CXE="
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
   </head>
   <body>
     <header>
@@ -28,6 +32,25 @@
             <li><a href="#aventage">aventages</a></li>
             <li>
               <a href="../Ridespage/ridespage.html" id="trajetsLink">Trajets</a>
+            </li>
+            <li>
+              <div id="notifications">
+                <button
+                  type="button"
+                  class="btn position-relative"
+                  id="inbox"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                >
+                  pending reservaions
+                  <span
+                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    id="inboxNumber"
+                  >
+                    <span class="visually-hidden">unread messages</span>
+                  </span>
+                </button>
+              </div>
             </li>
           </ul>
         </div>
@@ -64,6 +87,7 @@
         </ul>
       </div>
     </header>
+
     <section class="search-form" id="search">
       <div class="trt">
         <h3>TROUVER</h3>
@@ -77,14 +101,24 @@
             <div class="form-group">
               <label for="departureInput">Lieu de départ :</label>
 
-              <input type="text" id="departureInput" name="departureInput" />
+              <input
+                type="text"
+                id="departureInput"
+                name="departureInput"
+                required
+              />
               <ul id="suggestionsList" class="suggestionsList"></ul>
             </div>
 
             <!-- Arrival Location -->
             <div class="form-group">
               <label for="arrivalInput">Lieu d'arrivée :</label>
-              <input type="text" id="arrivalInput" name="arrivalInput" />
+              <input
+                type="text"
+                id="arrivalInput"
+                name="arrivalInput"
+                required
+              />
               <ul id="suggestionsList1" class="suggestionsList"></ul>
             </div>
           </div>
@@ -108,6 +142,22 @@
 
           <button type="submit">Rechercher</button>
         </form>
+      </div>
+      <div class="modal" tabindex="-1" id="exampleModal">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Pending reservations</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+          </div>
+        </div>
       </div>
     </section>
     <main>
@@ -231,10 +281,16 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
     <script src="../places.js"></script>
     <script src="script.js"></script>
     <script src="getUserLocation.js"></script>
     <script src="../userInfo.js"></script>
     <script src="../signout.js" type="module"></script>
+    <script src="../Notifications.js" type="module"></script>
   </body>
 </html>

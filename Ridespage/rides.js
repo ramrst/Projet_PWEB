@@ -134,52 +134,9 @@ async function displayData(data) {
   document.getElementById("result").innerHTML = rides;
 
   // Ajouter un écouteur d'événements aux boutons de réservation
-  const reserveButtons = document.querySelectorAll(".reserve-button");
-  reserveButtons.forEach((button) => {
-    button.addEventListener("click", () =>
-      handleReservation(button.getAttribute("data-id"))
-    );
-  });
 }
 
 // Fonction pour gérer la réservation
-function handleReservation(rideId) {
-  // open model to choose number of seats to reserve
-  // and then call makeReservation
-  const numberOfSeats = prompt("Combien de places souhaitez-vous réserver ?");
-  makeReservation(rideId, numberOfSeats);
-}
-function makeReservation(rideId, numberOfSeats) {
-  // Appeler la fonction pour effectuer une requête AJAX
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "../backend/php/makeReservation.php", true);
-  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  // only date is needed for the reservation date (not time)
-
-  const currentDate = new Date().toISOString().slice(0, 10);
-  var postData =
-    "code_trajet=" +
-    encodeURIComponent(rideId) +
-    "&nombre_places=" +
-    encodeURIComponent(numberOfSeats) +
-    "&date_reservation=" +
-    encodeURIComponent(currentDate);
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      // Handle the response from the server if needed
-      console.log(xhr.responseText);
-    }
-  };
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      // Handle the response from the server if needed
-      console.log(xhr.responseText);
-    }
-  };
-
-  xhr.send(postData);
-  return false;
-}
 
 // Fonction pour récupérer les données et mettre à jour l'interface utilisateur
 // use sesion storage to get search terms and handle all senarios (no search terms, some search terms, all search terms)
@@ -285,7 +242,8 @@ window.addEventListener("beforeunload", () => {
 document.addEventListener("DOMContentLoaded", function () {
   get_sessionData()
     .then(({ success, data }) => {
-      console.log("data promise ", data.nom);
+      console.log("data promise ", data);
+
       document.getElementById(
         "userInfo"
       ).innerHTML = ` <p> ${data.nom} ${data.prenom} </p> <p id ="arrow" > > </p>`;

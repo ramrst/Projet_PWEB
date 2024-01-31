@@ -1,7 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-} from "https://www.gstatic.com/firebasejs/9.4.1/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
 import { auth } from "../backend/FirebaseAuth.js";
 
 const registerForm = document.querySelector("#register-form");
