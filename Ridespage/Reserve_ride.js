@@ -180,7 +180,12 @@ function makeReservation() {
         console.log("reservation submitted");
         // push notification to database if there are no existing notifications
         const notificationData = {
-          targetedUser: tripDetails.createur,
+          targetedUser: {
+            id: tripDetails.createur,
+            firstName: tripDetails.nom,
+            lastName: tripDetails.prenom,
+            phone: tripDetails.tel,
+          },
           sender: {
             id: user.id,
             firstName: user.nom,
@@ -194,11 +199,12 @@ function makeReservation() {
             date: tripDetails.date_depart,
             time: tripDetails.heure_depart,
             seats: NumberOfSeats,
+            price: tripDetails.prix,
           },
           reservationDate: new Date().toISOString().slice(0, 16),
           status: "pending",
         };
-
+        console.log(notificationData);
         // Push the new notification to the database
         push(ref(database, "notifications"), notificationData)
           .then(() => {

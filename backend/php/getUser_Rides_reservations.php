@@ -23,8 +23,12 @@
 
                 
                 "; 
-                $sql1 = "SELECT r.*, t.* FROM reservation r JOIN trajet t ON r.code_trajet = t.code_trajet
-                WHERE r.code_user = $user_id";
+               $sql1 = "SELECT r.date_reservation, t.*, u.nom , u.prenom , u.tel , u.matricule 
+         FROM reservation r 
+         JOIN trajet t ON r.code_trajet = t.code_trajet
+         JOIN user u ON t.createur = u.code_user
+         WHERE r.code_user = $user_id";
+
                 $result = $conn-> query($sql);
                 
               

@@ -29,7 +29,7 @@ function fetchNotificationsAndListen() {
   // Create a query to order notifications by targetedUser and filter by user.id
   const queryRef = query(
     notificationsRef,
-    orderByChild("targetedUser"),
+    orderByChild("targetedUser/id"), // Order by targetedUser.id
     equalTo(user.id)
   );
 
@@ -47,6 +47,7 @@ function fetchNotificationsAndListen() {
           notificationsArray.push(notification);
         }
       });
+
       if (notificationsArray.length > 0) {
         document.getElementById("inboxNumber").innerHTML =
           notificationsArray.length;
@@ -54,7 +55,7 @@ function fetchNotificationsAndListen() {
       } else {
         document.getElementById("inboxNumber").innerHTML = "0";
         document.getElementById("modal-body").innerHTML =
-          "there is no  new notifications";
+          "there is no new reservations ";
       }
 
       // Log or process the initial array of notifications
@@ -67,13 +68,15 @@ function fetchNotificationsAndListen() {
 
   // Add a listener for the "child_added" event to listen for new notifications
   onChildAdded(notificationsRef, (childSnapshot) => {
-    const notification = childSnapshot.val();
+    console.log(childSnapshot.key);
+
+    const notification = { id: childSnapshot.key, ...childSnapshot.val() };
 
     // Check if the targetedUser of the new notification matches the current user's ID
-    if (notification.targetedUser === user.id) {
+    if (notification.targetedUser.id === user.id) {
       // Push the new notification to the existing array
       notificationsArray.push(notification);
-
+      console.log("New notifications array:", notificationsArray);
       // Log or process the updated notifications array
       document.getElementById("inboxNumber").innerHTML =
         notificationsArray.length;
@@ -98,10 +101,16 @@ function displayNotifications() {
           <p>${notification.rideDetails.destination}</p>
           <div>
             <p>sender: ${notification.sender.firstName} ${notification.sender.lastName}</p>
+            <p>TEL : ${notification.sender.phone}</p>
+            </div>
+            <div>
+            <p>seats: ${notification.rideDetails.seats}</p>
             <p>date: ${notification.rideDetails.date}</p>
           </div>
+          <div class="notification-status">
           <button class="accept">accepter</button>
-          <button class="decline">decliner</button>
+           <button class="decline">refuser</button>
+          </div>
         </li>
       `;
   });
@@ -122,39 +131,44 @@ function acceptReservation(index) {
   const notification = notificationsArray[index];
   const db = getDatabase();
   const notificationRef = ref(db, "notifications/" + notification.id);
-  update(notificationRef, {
-    status: "accepted",
-  })
-    .then(() => {
-      // save the ride in the database sql
-      var XHR = new XMLHttpRequest();
-      var date = notification.rideDetails.date.split("T")[0];
-      var urlEncodedData =
-        "code_trajet=" +
-        encodeURIComponent(notification.rideDetails.id) +
-        "&code_user=" +
-        encodeURIComponent(notification.sender.id) +
-        "&nombre_places=" +
-        encodeURIComponent(notification.rideDetails.seats) +
-        "&date_reservation=" +
-        encodeURIComponent(date);
+  console.log("notification", notification);
+  // save the ride in the database sql than update the notification status to accepted
+  var XHR = new XMLHttpRequest();
+  var date = notification.rideDetails.date.split("T")[0];
+  var urlEncodedData =
+    "code_trajet=" +
+    encodeURIComponent(notification.rideDetails.id) +
+    "&code_user=" +
+    encodeURIComponent(notification.sender.id) +
+    "&nombre_places=" +
+    encodeURIComponent(notification.rideDetails.seats) +
+    "&date_reservation=" +
+    encodeURIComponent(date);
 
-      // Define what happens on successful data submission
-      XHR.open("POST", "../Ridespage/makeReservation.php");
-      XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      XHR.send(urlEncodedData);
-      XHR.onreadystatechange = function () {
-        if (XHR.readyState == 4 && XHR.status == 200) {
-          // Handle the response from the server if needed
-          console.log("response promise ", XHR.responseText);
-        }
-      };
+  // Define what happens on successful data submission
+  XHR.open("POST", "../Ridespage/makeReservation.php");
+  XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  XHR.send(urlEncodedData);
+  XHR.onreadystatechange = function () {
+    if (XHR.readyState === 4) {
+      if (XHR.status === 200) {
+        console.log("reservation added");
 
-      alert("Notification updated successfully!");
-    })
-    .catch((error) => {
-      console.error("Error updating notification: ", error);
-    });
+        update(notificationRef, {
+          status: "accepted",
+        })
+          .then(() => {
+            alert("Notification updated successfully!");
+            fetchNotificationsAndListen();
+          })
+          .catch((error) => {
+            console.error("Error updating notification: ", error);
+          });
+      } else {
+        console.log("Error: " + XHR.status);
+      }
+    }
+  };
 }
 
 function decline(index) {

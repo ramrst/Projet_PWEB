@@ -163,6 +163,7 @@ function fetchDataAndUpdateUI() {
         if (Rides.length != 0) {
           await displayData(Rides).then(() => {
             // refresh data every 5 seconds
+            setTimeout(fetchDataAndUpdateUI, REFRESH_INTERVAL);
           });
         } else {
           document.getElementById("result").innerHTML = "Aucun trajet trouvé";

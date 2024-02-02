@@ -586,4 +586,19 @@ section.marche {
   height: 400px !important;
   overflow-y: scroll;
   padding-bottom: 20px;
+  display: flex !important;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+.notification {
+  list-style-type: none;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  padding-left: 15px;
+  border-radius: 2px;
+}
+.notification-status {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
 }
