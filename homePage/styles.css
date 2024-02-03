@@ -602,3 +602,58 @@ section.marche {
   width: 100%;
   justify-content: space-evenly;
 }
+.site-footer {
+  background-color: #26272b;
+  padding: 45px 0 20px;
+  font-size: 15px;
+  line-height: 24px;
+  color: #737373;
+  width: 100%;
+}
+.site-footer hr {
+  border-top-color: #bbb;
+  opacity: 0.5;
+}
+.site-footer hr.small {
+  margin: 20px 0;
+}
+.site-footer h6 {
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-top: 5px;
+  letter-spacing: 2px;
+}
+.site-footer a {
+  color: #737373;
+}
+.site-footer a:hover {
+  color: #3366cc;
+  text-decoration: none;
+}
+.footer-links {
+  list-style: none;
+  padding-left: 0;
+  line-height: 1.7;
+}
+.social-icons {
+  text-align: center;
+}
+.social-icons a {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin-left: 6px;
+  margin-right: 0;
+  border-radius: 100%;
+  background-color: #33353d;
+}
+.fa-facebook-f,
+.fa-twitter,
+.fa-instagram,
+.fa-linkedin-in {
+  color: white;
+}
+#notifications {
+  display: none;
+}

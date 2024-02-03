@@ -43,6 +43,7 @@ function fetchNotificationsAndListen() {
       snapshot.forEach((childSnapshot) => {
         var notification = childSnapshot.val();
         notification = { ...notification, id: childSnapshot.key };
+        console.log("notification", notification);
         if (notification.status === "pending") {
           notificationsArray.push(notification);
         }
@@ -86,7 +87,11 @@ function fetchNotificationsAndListen() {
 }
 
 // Call the function to fetch notifications and listen for new ones when the document is loaded
-fetchNotificationsAndListen();
+document.addEventListener("DOMContentLoaded", () => {
+  if (sessionStorage.getItem("user")) {
+    fetchNotificationsAndListen();
+  }
+});
 
 document.getElementById("inbox").addEventListener("click", function () {
   console.log("clicked");

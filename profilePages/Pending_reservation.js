@@ -8,6 +8,7 @@ import {
   equalTo,
   update,
 } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+import { addReservation } from "./script.js";
 
 let pendingRidesArray = []; // Define the array to store pending rides
 
@@ -16,18 +17,19 @@ document.addEventListener("DOMContentLoaded", function () {
   // ! fetch user pending rides in the real time data base and display them
 
   const user = JSON.parse(sessionStorage.getItem("user"));
-  var database = getDatabase();
+  let database = getDatabase();
   const notificationsRef = ref(database, "notifications");
   const queryRef = query(
     notificationsRef,
     orderByChild("sender/id"),
     equalTo(user.id)
   );
+  let pending = false;
   get(queryRef).then((snapshot) => {
     snapshot.forEach((childSnapshot) => {
-      var notification = childSnapshot.val();
+      let notification = childSnapshot.val();
       notification = { ...notification, id: childSnapshot.key };
-      if (notification.status === "pending") {
+      if (notification.status != "accepted") {
         const data = {
           code_notification: childSnapshot.key,
           code_trajet: notification.rideDetails.id,
@@ -43,15 +45,12 @@ document.addEventListener("DOMContentLoaded", function () {
           prenom: notification.targetedUser.lastName,
           prix: notification.rideDetails.price,
           tel: notification.targetedUser.phone,
+          status: notification.status,
         };
+
         console.log(data);
-        reservations.push(notification);
+        addReservation(data);
       }
     });
-    if (reservations.length > 0) {
-      console.log(reservations);
-      // displayPendingRides();
-    } else {
-    }
   });
 });

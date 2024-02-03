@@ -209,7 +209,10 @@ function makeReservation() {
         push(ref(database, "notifications"), notificationData)
           .then(() => {
             console.log("Notification successfully sent.");
+
+            sessionStorage.removeItem("user"); // Remove user key from session storage
             alert("Votre demande de réservation a été envoyée avec succès");
+
             window.location.href = "./ridespage.html";
           })
           .catch((error) => {

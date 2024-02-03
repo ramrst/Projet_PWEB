@@ -5,6 +5,7 @@ import { auth } from "./backend/FirebaseAuth.js";
 document.getElementById("signout").addEventListener("click", function () {
   signOut(auth)
     .then(() => {
+      sessionStorage.removeItem("user");
       console.log("User signed out");
       fetch("../backend/php/destroy_session.php", {
         method: "GET",
@@ -12,6 +13,7 @@ document.getElementById("signout").addEventListener("click", function () {
           "Content-Type": "application/json",
         },
       });
+      // remove session storege
 
       window.location.href = "../homepage/index.html";
     })

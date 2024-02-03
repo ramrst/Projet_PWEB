@@ -93,7 +93,6 @@ function getReservation() {
         if (data.reservation.success === true) {
           reservations = data.reservation.reservation;
           console.log("reservations", reservations);
-
           displayTripCards(reservations);
         } else {
           console.log("no reservations");
@@ -107,6 +106,7 @@ function displayTripCards(tripsData) {
   const container = document.getElementById("tripCardsContainer");
 
   tripsData.forEach((trip) => {
+    console.log("trip", trip);
     const card = document.createElement("div");
     card.classList.add("trip-card");
     card.id = trip.code_trajet; // Set card id to code_trajet
@@ -117,11 +117,14 @@ function displayTripCards(tripsData) {
         <p>Departure: ${trip.lieu_depart}</p>
         <p>Destination: ${trip.destination}</p>
         <p>Date Reservation: ${trip.date_reservation}</p>
+        <p>place reserve : ${trip.places_reserver}</p>
         <p>Total Price: ${trip.prix}</p>
+
       </div>
       <div class="driver-info">
         <p>Driver: ${trip.nom} ${trip.prenom}</p>
         <p>Tel: ${trip.tel}</p>
+        ${trip.status ? `<p>status : ${trip.status}</p>` : "accepted"}
       </div>
     `;
 
@@ -136,6 +139,41 @@ function displayTripCards(tripsData) {
 }
 
 // Example usage:
+export function addReservation(data) {
+  const container = document.getElementById("tripCardsContainer");
+  console.log("data", data);
+  const card = document.createElement("div");
+  card.classList.add("trip-card");
+  card.id = data.code_trajet; // Set card id to code_trajet
+
+  card.innerHTML = `
+    
+    <div class="trip-info">
+      <p>Departure: ${data.lieu_depart}</p>
+      <p>Destination: ${data.destination}</p>
+      <p>Date Reservation: ${data.date_reservation}</p>
+      <p>place reserve : ${data.places_reserver}</p>
+      <p>Total Price: ${data.prix}</p>
+    </div>
+    <div class="driver-info">
+      <p>Driver: ${data.nom} ${data.prenom}</p>
+      <p>Tel: ${data.tel}</p>
+      ${data.status ? `<p>status : ${data.status}</p>` : "accepted"}
+    </div>
+    <button id="cancel_reservation" >Anuller </button> 
+  `;
+  card.querySelector("#cancel_reservation").addEventListener("click", () => {
+    cancelReservation(data);
+  });
+
+  // Add click event listener to each card
+  card.addEventListener("click", () => {
+    // Handle card click event here, for example:
+    console.log("Card clicked: ", data.code_trajet);
+  });
+
+  container.appendChild(card);
+}
 
 function display_rides(trajet) {
   console.log(trajet);
@@ -157,4 +195,7 @@ function display_rides(trajet) {
     </tr>`;
     })
     .join("");
+}
+function cancelReservation(data) {
+  console.log("cancel reservation", data);
 }

@@ -134,7 +134,7 @@ md-input-container.md-default-theme .md-input {
   cursor: pointer;
   position: relative;
   top: 70px;
-  width: 450px;
+  width: 600px;
 }
 
 .trip-card:hover {
@@ -147,4 +147,10 @@ md-input-container.md-default-theme .md-input {
 
 .trip-info {
   margin-top: 10px;
+}
+.drop_menu {
+  height: fit-content;
+}
+.arrow_up {
+  transform: rotate(-90deg) !important;
 }

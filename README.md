@@ -4,4 +4,4 @@
 // to run the project you need to install xampp and run the server and the database
 // recreate the database with the file pweb.sql
 // in every php page you need to change the password and the username of the database
-// in the browser url write localhost:appache_number/projectDirectoryName
+// in the browser url write localhost:appache_port_number/projectDirectoryName

@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ).innerHTML = `<img src="https://eu.ui-avatars.com/api/?name=${data.nom}+${data.prenom}&background=fff&color=ccc&rounded=true&size=128" alt="avatar" class="avatar">`;
       document.getElementById("connexionbutton").style.display = "none";
       document.getElementById("right-menu").style.display = "flex";
+      document.getElementById("notifications").style.display = "flex";
     })
     .catch((error) => {
       console.log("error promise ", error);
