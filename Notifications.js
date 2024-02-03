@@ -8,6 +8,7 @@ import {
   query,
   equalTo,
   update,
+  onChildRemoved,
 } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
 
 let notificationsArray = [];
@@ -84,6 +85,20 @@ function fetchNotificationsAndListen() {
       displayNotifications();
     }
   });
+  onChildRemoved(notificationsRef, (childSnapshot) => {
+    console.log(childSnapshot.key);
+    const notification = { id: childSnapshot.key, ...childSnapshot.val() };
+    console.log("notification", notification);
+    if (notification.status === "pending") {
+      notificationsArray = notificationsArray.filter(
+        (notification) => notification.id !== childSnapshot.key
+      );
+      console.log("New notifications array:", notificationsArray);
+      document.getElementById("inboxNumber").innerHTML =
+        notificationsArray.length;
+      displayNotifications();
+    }
+  });
 }
 
 // Call the function to fetch notifications and listen for new ones when the document is loaded
@@ -134,6 +149,8 @@ function displayNotifications() {
 
 function acceptReservation(index) {
   const notification = notificationsArray[index];
+  // remove motification from the array
+  notificationsArray.splice(index, 1);
   const db = getDatabase();
   const notificationRef = ref(db, "notifications/" + notification.id);
   console.log("notification", notification);

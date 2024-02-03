@@ -1,3 +1,8 @@
+import {
+  getDatabase,
+  ref,
+  remove,
+} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
 document.addEventListener("DOMContentLoaded", function () {
   function getFileNameFromPath(path) {
     return path.split("/").pop();
@@ -117,7 +122,7 @@ function displayTripCards(tripsData) {
         <p>Departure: ${trip.lieu_depart}</p>
         <p>Destination: ${trip.destination}</p>
         <p>Date Reservation: ${trip.date_reservation}</p>
-        <p>place reserve : ${trip.places_reserver}</p>
+        <p>place reserve : ${trip.nbr_place}</p>
         <p>Total Price: ${trip.prix}</p>
 
       </div>
@@ -127,18 +132,31 @@ function displayTripCards(tripsData) {
         ${trip.status ? `<p>status : ${trip.status}</p>` : "accepted"}
       </div>
     `;
+    // if the trip is not accepted and the date_depart > current date and current time > heure_depart don't display the cancell button else display it
+    if (trip.status != "declined") {
+      const current_date = new Date().toISOString().split("T")[0];
+      const current_time = new Date().toISOString().split("T")[1].split(":");
 
-    // Add click event listener to each card
-    card.addEventListener("click", () => {
-      // Handle card click event here, for example:
-      console.log("Card clicked: ", trip.code_trajet);
+      if (
+        current_date < trip.date_depart ||
+        (current_date == trip.date_depart &&
+          current_time[0] < trip.heure_depart[0] &&
+          current_time[1] < trip.heure_depart[1])
+      ) {
+        console.log("cancell button");
+        card.innerHTML += `<button id="annuler_reservation" >Anuller </button>`;
+      }
+    }
+    card.querySelector("#annuler_reservation").addEventListener("click", () => {
+      annuler_reservation(trip);
     });
 
     container.appendChild(card);
   });
 }
-
 // Example usage:
+// !only if the reservaion page is called
+
 export function addReservation(data) {
   const container = document.getElementById("tripCardsContainer");
   console.log("data", data);
@@ -147,7 +165,7 @@ export function addReservation(data) {
   card.id = data.code_trajet; // Set card id to code_trajet
 
   card.innerHTML = `
-    
+
     <div class="trip-info">
       <p>Departure: ${data.lieu_depart}</p>
       <p>Destination: ${data.destination}</p>
@@ -160,17 +178,13 @@ export function addReservation(data) {
       <p>Tel: ${data.tel}</p>
       ${data.status ? `<p>status : ${data.status}</p>` : "accepted"}
     </div>
-    <button id="cancel_reservation" >Anuller </button> 
+    <button id="cancel_reservation" >Anuller </button>
   `;
   card.querySelector("#cancel_reservation").addEventListener("click", () => {
     cancelReservation(data);
   });
 
   // Add click event listener to each card
-  card.addEventListener("click", () => {
-    // Handle card click event here, for example:
-    console.log("Card clicked: ", data.code_trajet);
-  });
 
   container.appendChild(card);
 }
@@ -197,5 +211,29 @@ function display_rides(trajet) {
     .join("");
 }
 function cancelReservation(data) {
-  console.log("cancel reservation", data);
+  // delete  the reservation from the frebase real time data base
+  const db = getDatabase();
+  const notificationRef = ref(db, "notifications/" + data.code_notification);
+  remove(notificationRef).then(() => {
+    console.log("removed");
+    const card = document.getElementById(data.code_trajet);
+    card.remove();
+  });
+  // remove the reservation from the page
+}
+function annuler_reservation(trip) {
+  console.log("annuler reservation", trip);
+  var XHR = new XMLHttpRequest();
+  var urlEncodedData = "code_trajet=" + encodeURIComponent(trip.code_trajet);
+  XHR.addEventListener("load", function (event) {
+    console.log("done");
+    const card = document.getElementById(trip.code_trajet);
+    card.remove();
+  });
+  XHR.addEventListener("error", function (event) {
+    console.log("error");
+  });
+  XHR.open("POST", "../backend/php/annuler_reservation.php");
+  XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  XHR.send(urlEncodedData);
 }

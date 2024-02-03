@@ -23,7 +23,9 @@
 
                 
                 "; 
-               $sql1 = "SELECT r.date_reservation, t.*, u.nom , u.prenom , u.tel , u.matricule 
+               $sql1 = "SELECT r.date_reservation,r.nbr_place,  t.code_trajet ,t.lieu_depart,
+                t.heure_depart,t.createur,t.prix,t.destination,
+                t.date_depart , u.nom , u.prenom , u.tel , u.matricule 
          FROM reservation r 
          JOIN trajet t ON r.code_trajet = t.code_trajet
          JOIN user u ON t.createur = u.code_user
