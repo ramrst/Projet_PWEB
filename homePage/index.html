@@ -16,6 +16,7 @@
       integrity="sha256-7gHJpsgk5BJHsd/tOfDnH0qKNCzmTMJ8zv+UYYw9CXE="
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="../notifications.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -24,10 +25,27 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
     />
+    <!--awesome font update here-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
   </head>
   <body>
     <header>
-      <h1>Nsogo</h1>
+      <img
+        src="../assets/COVOIT ALGIERS Logo - Original - 5000x5000.png"
+        style="width: 150px; height: 150px"
+      />
+      <h1
+        style="
+          font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+            'Lucida Sans', Arial, sans-serif;
+          color: beige;
+        "
+      >
+        CovoitAlgiers
+      </h1>
       <nav>
         <div class="left-menu">
           <ul>
@@ -51,7 +69,6 @@
                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     id="inboxNumber"
                   >
-                    0
                   </span>
                 </button>
               </div>
@@ -100,17 +117,24 @@
       </div>
       <div class="contain">
         <form id="trajet_form">
+          <!--drops-->
+          <div class="drop drop-1"></div>
+          <div class="drop drop-2"></div>
+          <div class="drop drop-3"></div>
+          <div class="drop drop-4"></div>
           <!-- Departure Location -->
           <div id="depart_arrivee">
             <div class="form-group">
               <label for="departureInput">Lieu de départ :</label>
-
-              <input
-                type="text"
-                id="departureInput"
-                name="departureInput"
-                required
-              />
+              <div class="input-icon-wrapper">
+                <input
+                  type="text"
+                  id="departureInput"
+                  name="departureInput"
+                  required
+                />
+                <i class="fas fa-map-marker-alt" id="getLocation"></i>
+              </div>
               <ul id="suggestionsList" class="suggestionsList"></ul>
             </div>
 
@@ -166,30 +190,14 @@
     </section>
     <main>
       <div class="carrefour">
+        <h1 style="padding: 10px">Qui somme nous ?</h1>
         <section class="presentation" id="presentation">
-          <h1>Qui somme nous ?</h1>
-          <div class="contain">
-            <p>
-              Nsogo est une application de covoiturage en Algérie développée par
-              LABFENDER, une jeune startup algérienne située à Alger centre, à
-              proximité de la station de métro khelifa Boukhalfa.
-            </p>
-            <p>
-              Notre équipe internationale et multiculturelle est composée
-              essentiellement d’algériens mais aussi de collaborateurs français
-              et Indiens. Ce qui nous permet d’assurer le suivi de nos services
-              et la commercialisation de nos applications sur les 5 continents
-              24H sur 24. En effet, nous disposons d’équipes qui travaillent 8
-              heures sur la région Europe-Afrique. Une autre prend le relais 8
-              heures sur la région Amérique du nord et du sud. La dernière
-              assure les 8 heures de la région Asie et Moyen Orient.
-            </p>
-            <p>
-              Notre objectif est de lancer des applications simples qui
-              résolvent les soucis du quotidien partout dans le monde.
-            </p>
+          <div class="contain1">
+            <p id="animatedText"></p>
           </div>
+          <!-- The rest of your content -->
         </section>
+
         <section class="marche">
           <h2>Comment Ca Marche ?</h2>
           <div class="psg-cnd">
@@ -201,8 +209,9 @@
                   alt="passager-etape1"
                 />
                 <p>
-                  Inscrivez votre trajet sur l'application pour permettre à vos
-                  collègues de partir avec vous.
+                  Recherchez un trajet en indiquant votre point de départ et
+                  votre destination sur l'application. Cela vous permet de voir
+                  les trajets partagés disponibles proposés par les conducteurs.
                 </p>
               </div>
               <div class="etape">
@@ -211,8 +220,10 @@
                   alt="passager-etape2"
                 />
                 <p>
-                  Discuter avec le passager pour convenir du prix et du lieu de
-                  rendez-vous.
+                  Une fois que vous avez trouvé un trajet qui correspond à vos
+                  besoins, vous pouvez contacter le conducteur pour discuter des
+                  détails tels que le lieu de rendez-vous et le prix du
+                  covoiturage.
                 </p>
               </div>
               <div class="etape">
@@ -221,8 +232,10 @@
                   alt="passager-etape3"
                 />
                 <p>
-                  Super ! Vous voyagez à moindre coût, et vous pouvez faire des
-                  rencontres.
+                  Confirmez votre place dans le trajet et préparez-vous à
+                  voyager. En covoiturant, vous contribuez à réduire le nombre
+                  de voitures sur les routes, économisez de l'argent et avez
+                  l'opportunité de rencontrer de nouvelles personnes.
                 </p>
               </div>
             </div>
@@ -235,8 +248,10 @@
                   alt="passager-etape1"
                 />
                 <p>
-                  Inscrivez votre trajet sur l'application pour permettre à vos
-                  collègues de partir avec vous.
+                  Publiez votre trajet en précisant votre itinéraire, les
+                  horaires de départ et d'arrivée sur l'application. Cela permet
+                  aux passagers cherchant un trajet similaire de vous trouver
+                  facilement.
                 </p>
               </div>
               <div class="etape">
@@ -245,8 +260,10 @@
                   alt="passager-etape2"
                 />
                 <p>
-                  Discuter avec le passager pour convenir du prix et du lieu de
-                  rendez-vous.
+                  Recevez des demandes de covoiturage de la part des passagers
+                  intéressés. Vous pouvez consulter leurs profils et discuter
+                  avec eux pour convenir des détails comme le point de
+                  rendez-vous et la participation aux frais de voyage.
                 </p>
               </div>
               <div class="etape">
@@ -255,8 +272,11 @@
                   alt="passager-etape3"
                 />
                 <p>
-                  Super ! Vous voyagez à moindre coût, et vous pouvez faire des
-                  rencontres.
+                  Confirmez les passagers qui vous accompagneront et préparez
+                  votre véhicule pour le trajet. En partageant votre trajet,
+                  vous faites des économies sur vos dépenses de voyage, réduisez
+                  l'empreinte carbone et profitez de la compagnie de nouveaux
+                  amis pendant le trajet.
                 </p>
               </div>
             </div>
@@ -271,8 +291,9 @@
           <div class="footer-about col">
             <h6>About Nsogo</h6>
             <p class="text-justify">
-              Nsogo est une application de covoiturage innovante conçue pour
-              faciliter vos déplacements tout en réduisant l'empreinte carbone.
+              CovoitAlgiers est une application de covoiturage innovante conçue
+              pour faciliter vos déplacements tout en réduisant l'empreinte
+              carbone.
             </p>
           </div>
 
@@ -304,7 +325,7 @@
         <hr />
         <div class="row">
           <p class="col-sm">
-            &copy; 2023 Nsogo Covoiturage. All Rights Reserved.
+            &copy; 2024 CovoitAlgiers Covoiturage. All Rights Reserved.
           </p>
         </div>
       </div>

@@ -119,17 +119,50 @@ function displayTripCards(tripsData) {
     card.innerHTML = `
       
       <div class="trip-info">
-        <p>Departure: ${trip.lieu_depart}</p>
-        <p>Destination: ${trip.destination}</p>
-        <p>Date Reservation: ${trip.date_reservation}</p>
-        <p>place reserve : ${trip.nbr_place}</p>
-        <p>Total Price: ${trip.prix}</p>
+      <div class="localisation"> 
+      <i class="fa-solid fa-location-dot"></i>
+      <div class="localisation_info">
+      <p>De :  <span id="depart" > ${trip.lieu_depart} </span></p>
+      <p class="temps" >le  ${trip.date_depart} , ${trip.heure_depart} </p>
+      <p>A :  <span id="destination" >${trip.destination} </span></p>
+      </div>
+      
+      </div>
+      <div id="line"></div>
+          <div id ="prix_place" >
+          <div id="place_reserver">
+          
+          <p>  <span class="nbr">${
+            trip.nbr_place
+          } </span> place(s) reserver </p>
+          </div>
+
+          <div id="prix">
+          
+          <p>    <span class="nbr">${trip.prix} </span> DA </p>
+           
+          </div>
+        </div>
+        
 
       </div>
+      <div id="line"></div>
       <div class="driver-info">
-        <p>Driver: ${trip.nom} ${trip.prenom}</p>
-        <p>Tel: ${trip.tel}</p>
-        ${trip.status ? `<p>status : ${trip.status}</p>` : "accepted"}
+      
+     
+        <p>Driver: <span> ${trip.nom} ${trip.prenom}</span></p>
+        
+        <p>Tel:<span> ${trip.tel} </span></p>
+        </div>
+       
+        
+    <div class="status"> 
+          <p>Status:
+          <span  >
+      ${trip.status ? ` ${trip.status}</p>` : "Accepter"}
+      </span>
+      </p>
+      <p >Reserver a  : ${trip.date_reservation}</p>
       </div>
     `;
     // if the trip is not accepted and the date_depart > current date and current time > heure_depart don't display the cancell button else display it
@@ -144,7 +177,7 @@ function displayTripCards(tripsData) {
           current_time[1] < trip.heure_depart[1])
       ) {
         console.log("cancell button");
-        card.innerHTML += `<button id="annuler_reservation" >Anuller </button>`;
+        card.innerHTML += `<button id="annuler_reservation" >Annuler la reservation </button>`;
       }
     }
     card.querySelector("#annuler_reservation").addEventListener("click", () => {
@@ -166,19 +199,53 @@ export function addReservation(data) {
 
   card.innerHTML = `
 
-    <div class="trip-info">
-      <p>Departure: ${data.lieu_depart}</p>
-      <p>Destination: ${data.destination}</p>
-      <p>Date Reservation: ${data.date_reservation}</p>
-      <p>place reserve : ${data.places_reserver}</p>
-      <p>Total Price: ${data.prix}</p>
+  <div class="trip-info">
+  <div class="localisation"> 
+  <i class="fa-solid fa-location-dot"></i>
+  <div class="localisation_info">
+  <p>De :  <span id="depart" > ${data.lieu_depart} </span></p>
+  <p class="temps" >le  ${data.date_depart} , ${data.heure_depart} </p>
+  <p>A :  <span id="destination" >${data.destination} </span></p>
+  </div>
+  
+  </div>
+  <div id="line"></div>
+      <div id ="prix_place" >
+      <div id="place_reserver">
+      
+      <p>  <span class="nbr">${
+        data.places_reserver
+      } </span> place(s) reserver </p>
+      </div>
+
+      <div id="prix">
+      
+      <p>    <span class="nbr">${data.prix} </span> DA </p>
+       
+      </div>
     </div>
-    <div class="driver-info">
-      <p>Driver: ${data.nom} ${data.prenom}</p>
-      <p>Tel: ${data.tel}</p>
-      ${data.status ? `<p>status : ${data.status}</p>` : "accepted"}
+    
+
+  </div>
+  <div id="line"></div>
+  <div class="driver-info">
+  
+ 
+    <p>Driver: <span> ${data.nom} ${data.prenom}</span></p>
+    
+    <p>Tel:<span> ${data.tel} </span></p>
     </div>
-    <button id="cancel_reservation" >Anuller </button>
+   
+    
+<div class="status"> 
+      <p>Status:
+      <span  >
+  ${data.status ? ` ${data.status}</p>` : "Accepter"}
+  </span>
+  </p>
+  <p >Reserver a  : ${data.date_reservation}</p>
+  </div>
+    <button id="cancel_reservation" >Annuler la reservation </button>
   `;
   card.querySelector("#cancel_reservation").addEventListener("click", () => {
     cancelReservation(data);
@@ -189,27 +256,45 @@ export function addReservation(data) {
   container.appendChild(card);
 }
 
-function display_rides(trajet) {
-  console.log(trajet);
+function display_rides(trajets) {
+  console.log(trajets);
   const table_body = document.getElementById("table-body");
-  table_body.innerHTML = trajet
-    .map((trajet) => {
-      return `<tr class="md-table-content-row">
-    <td id='code_trajet'>${trajet.code_trajet}</td>
-    <td>${trajet.lieu_depart}</td>
-    <td>${trajet.destination}</td>
-    <td>${trajet.date_depart}</td>
-    <td>${trajet.places_libre}</td>
-    <td>${trajet.total_reserved_places}</td>
-    <td>${trajet.prix} DA </td>
-    <td>${
-      parseFloat(trajet.total_reserved_places) * parseFloat(trajet.prix)
-    } DA </td>
-   
-    </tr>`;
+  table_body.innerHTML = trajets
+    .map((trajet, index) => {
+      // Generate a unique ID for each row
+      const rowId = `trajet-${index}`;
+
+      return `<tr class="md-table-content-row" id="${rowId}">
+        <td>${trajet.code_trajet}</td>
+        <td>${trajet.lieu_depart}</td>
+        <td>${trajet.destination}</td>
+        <td>${trajet.date_depart}</td>
+        <td>${trajet.places_libre}</td>
+        <td>${trajet.total_reserved_places}</td>
+        <td>${trajet.prix} DA</td>
+        <td>${
+          parseFloat(trajet.total_reserved_places) * parseFloat(trajet.prix)
+        } DA</td>
+      </tr>`;
     })
     .join("");
+
+  // Add event listener to each row
+  trajets.forEach((trajet, index) => {
+    const rowId = `trajet-${index}`;
+    const rowElement = document.getElementById(rowId);
+
+    rowElement.addEventListener("click", () => {
+      // Display the code_trajet when a row is clicked
+      trajetDetails(trajet.code_trajet);
+    });
+  });
 }
+function trajetDetails(code_trajet) {
+  console.log("trajetDetails", code_trajet);
+  window.location.href = `./Trajet_details.html?code_trajet=${code_trajet}`;
+}
+
 function cancelReservation(data) {
   // delete  the reservation from the frebase real time data base
   const db = getDatabase();

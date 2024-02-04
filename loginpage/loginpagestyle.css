@@ -9,7 +9,6 @@
   --form-bg-color: #eee;
 }
 
-/* Reset CSS */
 * {
   margin: 0;
   padding: 0;
@@ -19,8 +18,9 @@
 
 /* Body styles */
 body {
-  background-image: url("../assets/fermer-mobile-indications-carte.jpg");
-  background-repeat: no-repeat;
+  /* background-image: url("../assets/fermer-mobile-indications-carte.jpg");*/
+  background-repeat: no-repeat !important;
+  height: 100vh;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -28,21 +28,32 @@ body {
   flex-direction: column;
   margin: 0; /* Reset default margin */
   overflow-x: hidden; /* Prevent horizontal scroll */
+  background: linear-gradient(
+    150deg,
+    rgb(210, 210, 210) 0%,
+    #e2edff 50%,
+    #0040d684 50%,
+    #303031a7 100%
+  );
 }
 header {
   width: 100%;
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
+  height: 60px;
+  background: transparent;
+  color: #969494;
   display: flex;
-  justify-content: space-between; /* Espacement entre les éléments */
+  justify-content: space-between;
+  /* Espacement entre les éléments */
   align-items: center;
+  position: absolute;
+  top: 0;
+  z-index: 9999;
 }
 /* Navigation */
 nav {
   flex: 1; /* Utilise l'espace disponible pour la navigation */
   display: flex;
-  justify-content: center; /* Centre les éléments de la navigation horizontalement */
+  justify-content: right; /* Centre les éléments de la navigation horizontalement */
 }
 
 nav ul {
@@ -85,10 +96,8 @@ nav a:hover {
   width: 100%;
   max-width: 768px;
   min-height: 480px;
-  margin: 10px;
+  margin: 100px;
 }
-
-/* ... (Continue with the rest of your styles) */
 
 .container p {
   font-size: 14px;
@@ -154,7 +163,42 @@ nav a:hover {
   height: 100%;
   transition: all 0.6s ease-in-out;
 }
-
+/*last update hna*/
+.password-container1 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%; /* Ensure the container takes full width */
+}
+/*last update hna*/
+.password-container2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%; /* Ensure the container takes full width */
+}
+/*last update hna*/
+#eyeicon1 {
+  position: absolute;
+  right: 10px;
+  height: 20px; /* Adjust the height as needed */
+  width: 20px; /* Adjust the width as needed */
+  cursor: pointer;
+}
+/*last update hna*/
+#eyeicon2 {
+  position: absolute;
+  right: 10px;
+  height: 20px; /* Adjust the height as needed */
+  width: 20px; /* Adjust the width as needed */
+  cursor: pointer;
+}
+/*last update hna*/
+#login_password {
+  width: 100%; /* Ensure the input takes full width */
+  flex-grow: 1; /* Allows the input to fill the container */
+  padding-right: 30px; /* Adjust padding to prevent text from going under the icon */
+}
 .sign-in {
   left: 0;
   width: 50%;
@@ -272,6 +316,25 @@ nav a:hover {
 .container.active .toggle-right {
   transform: translateX(200%);
 }
+/*last update for the balise span of email textfieled*/
+#email_Error {
+  color: red;
+}
+/*last update for the balise span of matricule textfieled*/
+#matriculeError {
+  color: red;
+}
+/*last update for balise span of password fieled*/
+#verifMotDePasseError {
+  color: red;
+}
+/*last update for error_message*/
+.error-message {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 5px;
+  display: block;
+}
 footer {
   background-color: var(--primary-color);
   color: var(--text-color);
@@ -284,7 +347,4 @@ footer {
   padding-top: 20px; /* Add padding to the footer */
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-}
-.hidden {
-  display: none;
 }

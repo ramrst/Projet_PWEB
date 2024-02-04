@@ -116,20 +116,20 @@ function displayNotifications() {
   const notifications = notificationsArray.map((notification, index) => {
     return `
         <li id="notification-${index}" class="notification">
-          <p>${notification.rideDetails.id}</p>
-          <p>${notification.rideDetails.departure}</p>
-          <p>${notification.rideDetails.destination}</p>
+          <p > <span>ID  :</span> ${notification.rideDetails.id}</p>
+          <p><span>Depart :</span> ${notification.rideDetails.departure}</p>
+          <p><span>Arrivee :</span> ${notification.rideDetails.destination}</p>
           <div>
-            <p>sender: ${notification.sender.firstName} ${notification.sender.lastName}</p>
-            <p>TEL : ${notification.sender.phone}</p>
+            <p><span>Expediteur : </span>${notification.sender.firstName} ${notification.sender.lastName}</p>
+            <p><span>Tel :</span> ${notification.sender.phone}</p>
             </div>
             <div>
-            <p>seats: ${notification.rideDetails.seats}</p>
-            <p>date: ${notification.rideDetails.date}</p>
+            <p><span>Places reservee :</span> ${notification.rideDetails.seats}</p>
+            <p><span>Date depart :</span> ${notification.rideDetails.date}</p>
           </div>
           <div class="notification-status">
-          <button class="accept">accepter</button>
-           <button class="decline">refuser</button>
+          <button class="accept">Accepter</button>
+           <button class="decline">Refuser</button>
           </div>
         </li>
       `;

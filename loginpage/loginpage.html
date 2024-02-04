@@ -8,7 +8,19 @@
   </head>
   <body>
     <header>
-      <h1>Nsogo</h1>
+      <img
+        src="../assets/COVOIT ALGIERS Logo - Original - 5000x5000.png"
+        style="width: 150px; height: 150px"
+      />
+      <h1
+        style="
+          font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+            'Lucida Sans', Arial, sans-serif;
+          color: beige;
+        "
+      >
+        CovoitAlgiers
+      </h1>
       <nav>
         <div class="left-menu">
           <ul>
@@ -31,42 +43,73 @@
           <h1>Creer un compte</h1>
           <input type="text" id="Nom" placeholder="Nom" required />
           <input type="text" id="Prenom" placeholder="Prénom" required />
+          <!--last update hna-->
           <input
             type="text"
             id="Num_tel"
-            placeholder="Numéro de téléphone"
             maxlength="10"
+            placeholder="Numéro de téléphone"
+            onblur="validatePhoneNumber()"
+            oninput="this.value=this.value.replace(/[^0-9]/g,'');"
             required
           />
-
+          <!--last update hna-->
+          <span id="phoneError" class="error-message"></span>
+          <!--last update hna-->
           <input
             type="text"
             id="Matricule"
             placeholder="Matricule d'étudiant"
             maxlength="12"
+            minlength="12"
+            onblur="validateMatricule()"
+            oninput="this.value=this.value.replace(/[^0-9]/g,'');"
             required
           />
+          <!--last update hna-->
+          <span id="matriculeError"></span>
+          <!--last update hna-->
           <input
             type="email"
-            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
             id="register_email"
             name="Email"
             placeholder="Email"
+            spellcheck="false"
+            onblur="validateEmail()"
             required
           />
-          <input
-            id="register_password"
-            name="Password"
-            type="password"
-            placeholder="Insérer le mot de passe"
-            required
-          />
+          <!--last update hna-->
+          <span id="email_Error"></span>
+          <!--last update hna-->
+          <div class="password-container1">
+            <input
+              id="register_password"
+              name="Password"
+              type="password"
+              placeholder="Insérer le mot de passe"
+              required
+            />
+            <!--last update hna-->
+            <img
+              src="../icons/eyeClose.png"
+              alt="Show Password"
+              id="eyeicon1"
+              onclick="togglePasswordVisibilityv1()"
+            />
+            <!--last update hna-->
+          </div>
+          <!--last update hna-->
+          <span id="motDePasseError" class="error-message"></span>
           <input
             id="ConfirmPassword"
             type="text"
+            onblur="validatePasswordMatch()"
             placeholder="Confirmer le mot de passe"
             required
           />
+          <!--last update hna-->
+          <span id="verifMotDePasseError" class="error-message"></span>
+          <!--last update hna-->
           <button type="submit">s'inscrire</button>
         </form>
       </div>
@@ -75,12 +118,22 @@
         <form id="login-form">
           <h1>Se connecter</h1>
           <input type="email" placeholder="Email" id="login_email" required />
-          <input
-            type="password"
-            placeholder="Mot de passe"
-            id="login_password"
-            required
-          />
+          <!--last update hna-->
+          <div class="password-container2">
+            <input
+              type="password"
+              placeholder="Mot de passe"
+              id="login_password"
+              required
+            />
+            <img
+              src="../icons/eyeClose.png"
+              alt="Show Password"
+              id="eyeicon2"
+              onclick="togglePasswordVisibilityv2()"
+            />
+          </div>
+          <!--last update hna-->
           <a href="#">Mot de passe oublié?</a>
           <button type="submit">Se connecter</button>
         </form>
@@ -108,7 +161,7 @@
       </div>
     </div>
     <footer>
-      <p>&copy; 2023 Covoiturage | Contactez-nous : contact@covoiturage.com</p>
+      <p>&copy; 2024 CovoitAlgiers | Contactez-nous : brainboxdz@gmail.com</p>
     </footer>
     <script src="Authentification.js?v=1.1" type="module"></script>
     <script src="script.js?v=1.1"></script>

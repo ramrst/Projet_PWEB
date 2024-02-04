@@ -1,9 +1,9 @@
-/* Variables de couleur */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+/* Variables de couleur */
 :root {
   --primary-color: #333;
   --background-color: #c9d6ff;
@@ -26,34 +26,13 @@ body {
   /* Fixed background image */
   /* Add a blur effect */
   width: 100%;
+  animation: fadeIn 0.5s forwards; /* Animation for fade-in effect */
 }
-
-main section {
-  height: 100vh; /* Espacement de 170px entre les sections */
-}
-#search {
-  background-image: url("../assets/fermer-mobile-indications-carte.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-}
-main section h1,
-main section h2,
-main section h3,
-main section h4,
-main section h5,
-c main section h6 {
-  margin-top: 0px; /* Espacement de 50px entre le titre de la section et le contenu */
-  margin-bottom: 0; /* Réinitialisation de la marge inférieure pour éviter un double espacement */
-}
-
 header {
   width: 100%;
   height: 60px;
   background: transparent;
-
-  color: #fff;
+  color: #969494;
   display: flex;
   justify-content: space-between;
   /* Espacement entre les éléments */
@@ -61,13 +40,12 @@ header {
   position: absolute;
   top: 0;
   z-index: 9999;
-
-  /* Pour que le header reste en haut de la page */
 }
 header h1 {
   padding: 10px;
   color: #f4f4f4;
 }
+
 /* Navigation */
 nav {
   flex: 1; /* Utilise l'espace disponible pour la navigation */
@@ -98,9 +76,32 @@ nav a:hover {
   color: #5a5a5a;
   text-decoration: none;
 }
-#right-menu {
-  display: none;
+.right-menu {
+  display: flex;
   align-items: center;
+}
+
+#search {
+  background-image: url("../assets/fermer-mobile-indications-carte.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  padding-bottom: 15px;
+}
+
+main section {
+  height: 100vh; /* Espacement de 170px entre les sections */
+}
+
+main section h1,
+main section h2,
+main section h3,
+main section h4,
+main section h5,
+c main section h6 {
+  margin-top: 0px; /* Espacement de 50px entre le titre de la section et le contenu */
+  margin-bottom: 0; /* Réinitialisation de la marge inférieure pour éviter un double espacement */
 }
 
 .button {
@@ -136,28 +137,55 @@ nav a:hover {
   border: 1px solid rgb(93, 108, 116);
   box-shadow: rgb(0 0 0 / 30%) 0px 4px 4px, rgb(194, 194, 194) 0px 0px 0px 3px;
 }
-.trt {
-  margin-top: 40px;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
+/* Apply the animation to each child element with a staggered delay */
+.trt h3,
+.trt h1,
+.trt p {
+  opacity: 0; /* Initial state */
+  animation: fadeInUp 0.8s forwards; /* Adjust the duration as needed */
+}
+
 .trt h3 {
+  animation-delay: 0.5s; /* Adjust the delay as needed */
   font-size: 35px;
   color: rgb(245, 245, 245);
 }
+
 .trt h1 {
+  animation-delay: 1s; /* This will start after h3 */
   font-size: 38px;
   color: #eee;
 }
+
 .trt p {
+  animation-delay: 1.5s; /* This will start after h1 */
   font-size: 16px;
   color: #f0f0f0;
 }
-/* Formulaire */
-main {
+
+.contain {
+  position: relative;
+  margin-top: 50px;
+  line-height: 1.6;
   display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.contain p {
+  transition: background-color 0.3s ease;
+  font-size: 30px;
 }
 .search-form {
   display: flex;
@@ -169,25 +197,107 @@ main {
   align-items: center;
 }
 
+/* Existing #trajet_form styles (do not change width, height, and background-color) */
 #trajet_form {
-  width: 500px;
-  height: 70%;
+  width: 500px; /* Unchanged */
+  height: 70%; /* Unchanged */
   display: flex;
   flex-direction: column;
-  /* Set the last value (0.8) for transparency (0 is fully transparent, 1 is fully opaque) */
-  padding: 0px;
+  padding: 0px; /* This will be overridden by the new padding */
   margin-bottom: 10px;
   margin-left: 10px;
-  border-radius: 8px;
+  border-radius: 8px; /* This might be overridden if you decide to apply the new border-radius */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.63);
-  padding: 4rem;
-  /* Animation for fade-in effect */
+  background-color: rgba(255, 255, 255, 0.63); /* Unchanged */
+  padding: 4rem; /* This will be overridden by the new padding */
+  /* Add new properties below, respecting the non-change constraints */
+  padding: 3em; /* New padding, overwrites existing */
+  border-radius: 20px; /* New border-radius, overwrites existing */
+  border-left: 1px solid white; /* Assuming $white is replaced with actual color value */
+  border-top: 1px solid white;
+  backdrop-filter: blur(10px);
+  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2); /* New box-shadow, overwrites existing */
+  text-align: center;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Convert the nested SCSS to CSS */
+#trajet_form p {
+  font-weight: 500;
+  color: #fff;
+  opacity: 0.7;
+  font-size: 1.4rem;
+  margin-top: 0;
+  margin-bottom: 60px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#trajet_form a,
+#trajet_form a:hover,
+#trajet_form a:active {
+  text-decoration: none;
+  color: #ddd;
+  font-size: 12px;
+}
+
+#trajet_form a:hover {
+  text-shadow: 2px 2px 6px #00000040;
+}
+
+#trajet_form a:active {
+  text-shadow: none;
+}
+
+/* Input styles, respecting the "type" selectors */
+#trajet_form input {
+  color: #000 !important;
+  background: transparent;
+  width: 200px; /* Note: This might need adjusting based on your form layout */
+  padding: 1em;
+  margin-bottom: 2em;
+  border: none;
+  border-left: 1px solid white; /* Assuming $white is replaced with actual color value */
+  border-top: 1px solid white;
+  border-radius: 5000px;
+  backdrop-filter: blur(5px);
+  box-shadow: 4px 4px 60px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#trajet_form input:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
+}
+
+#trajet_form input[type="email"]:focus,
+#trajet_form input[type="password"]:focus,
+#trajet_form input[type="button"]:hover,
+#trajet_form input[type="button"]:active {
+  /* Specific focus and active styles for input types */
+}
+
+#trajet_form:hover {
+  margin: 4px; /* This might affect the overall layout slightly */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 form label {
+  text-align: left;
   display: block;
   margin-bottom: 8px;
   font-size: 20px;
@@ -199,7 +309,7 @@ form label {
   width: 100%;
   padding: 10px;
   margin-bottom: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #919191;
   border-radius: 4px;
   font-size: 16px;
   outline: none;
@@ -218,7 +328,7 @@ form label {
   padding: 10px;
   flex: 1;
   border: none;
-  border: 1px solid #ccc;
+  border: 1px solid #919191;
   border-radius: 4px;
   outline: none;
   font-size: 16px;
@@ -234,13 +344,13 @@ form label {
 button {
   background-color: #007bff;
   color: #fff;
-  border: none;
+  border: solid white 1px;
   padding: 12px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  border-radius: 4px;
+  border-radius: 15px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
@@ -250,64 +360,94 @@ button {
 form button:hover {
   background-color: #0056b3;
 }
-.carrefour {
-  margin-top: 0px;
-  text-align: center;
-}
-/* Avantages */
-.aventage {
-  display: block;
+/*Button de localisation upadate hna*/
+.input-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.aventage-cartes {
+.fas.fa-map-marker-alt {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #007bff;
+}
+
+#departureInput {
+  padding-right: 30px; /* Make room for the icon inside the input */
+}
+/*style of drops*/
+
+.drop {
+  position: absolute;
+  width: 100px; /* Smaller than form */
+  height: 100px; /* Smaller than form */
+  border-radius: 20px; /* Matching form */
+  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2); /* Matching form */
+  backdrop-filter: blur(10px); /* Matching form */
+  background-color: rgba(255, 255, 255, 0.63); /* Matching form */
+  transition: transform 2s ease;
+}
+
+/* Position drops around the form */
+.drop-1 {
+  top: 90px;
+  left: -52px;
+}
+.drop-2 {
+  top: -25px;
+  right: -25px;
+}
+.drop-3 {
+  bottom: -25px;
+  left: -25px;
+}
+.drop-4 {
+  bottom: -25px;
+  right: -25px;
+}
+
+/* Animate drops in specific directions when form is hovered */
+#trajet_form:hover .drop-1 {
+  transform: translate(-20px, 0); /* Move left */
+}
+
+#trajet_form:hover .drop-2 {
+  transform: translate(0, -20px); /* Move up */
+}
+
+#trajet_form:hover .drop-3 {
+  transform: translate(20px, 0); /* Move right */
+}
+
+#trajet_form:hover .drop-4 {
+  transform: translate(0, 20px); /* Move down */
+}
+/* Formulaire */
+main {
   display: flex;
-  margin-top: 0px;
+  width: 100%;
   justify-content: center;
   align-items: center;
-  margin-bottom: 100px;
+  flex-direction: column;
 }
-.aventage-cartes {
-  display: flex;
-  justify-content: space-around;
-  padding: 20px;
-}
-
-.carte {
-  background-color: rgb(
-    255,
-    255,
-    255
-  ); /* Slightly transparent white background */
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Added transition for background-color */
-  margin: 10px;
-  padding: 10px;
-}
-
-.carte:hover {
-  box-shadow: 0 8px 16px rgba(195, 195, 195, 0.982);
-}
-
-.titel-carte {
-  background-color: rgba(
-    51,
-    51,
-    51,
-    0.8
-  ); /* Transparent dark gray background for the title */
-  color: #fff;
-  padding: 10px;
+.carrefour {
+  /*
+  background-image: url("../assets/istockphoto.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  */
+  width: 100%;
+  background: linear-gradient(
+    150deg,
+    rgb(210, 210, 210) 0%,
+    #e2edff 50%,
+    #8291b584 50%,
+    #303031a7 100%
+  );
+  margin-top: 0px;
   text-align: center;
-  font-weight: bold;
-  border-radius: 20px;
-}
-.project-image {
-  align-items: center;
-  max-width: 100%; /* Ensure the image does not exceed its container */
-  height: auto; /* Maintain the aspect ratio */
 }
 
 hr {
@@ -337,91 +477,60 @@ img {
     opacity: 1;
   }
 }
-
-.carte {
-  animation: fadeIn 0.8s ease-in-out;
-}
-.carte img {
-  width: 240px;
-  height: 150px;
-}
-
-.description {
-  width: 245px;
-  height: 190px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.titel-carte {
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-  margin-bottom: 20px;
-  margin-top: 10px;
-}
+/*Présentation*/
 .presentation {
+  margin-top: 5px;
   text-align: center;
-  padding: 50px;
-  background-color: #fff;
-
-  margin: 20px;
+  padding: 20px;
+  margin: 1px;
   border-radius: 8px;
-  opacity: 0; /* Initial opacity for fade-in effect */
-  animation: fadeIn 1s forwards; /* Animation for fade-in effect */
+  color: #000;
+  padding: 15px;
+  font-size: 20px;
+  height: 350px;
+  background-color: rgba(44, 44, 44, 0.1);
 }
 
-@keyframes fadeIn {
+.contain1 {
+  overflow: hidden; /* Keeps the container's height stable */
+  display: flex;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+}
+
+/* If you specifically want to style the paragraph */
+#animatedText {
+  margin: 0; /* Adjust as needed */
+  padding: 0; /* Adjust as needed */
+  /* Add more styles as needed */
+}
+@keyframes fadeInLetter {
   from {
     opacity: 0;
+    transform: translateY(-10px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
-h1 {
-  color: #333;
+.letter {
+  display: inline-block;
+  opacity: 0;
+  animation: fadeInLetter 0.5s forwards;
+}
+.special {
+  font-weight: bold;
+  font-family: "Arial", sans-serif; /* Or any special font-family you prefer */
 }
 
-.contain {
-  margin-top: 20px;
-  line-height: 1.6;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.contain p {
-  transition: background-color 0.3s ease;
-  font-size: 25px;
-}
-
-.contain p:hover {
-  background-color: #f0f0f0;
-}
-/* Footer */
-footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 20px;
-  /* Pour coller le footer en bas */
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
 /* Set a height for the map container */
 .suggestionsList {
   list-style: none;
   padding: 0;
   margin: 0;
-  border: 1px solid #ccc;
+  border: 1px solid #ffffff;
   display: none;
   max-height: 150px;
   overflow-y: scroll;
@@ -523,65 +632,69 @@ footer {
   cursor: pointer;
   margin-right: 50px;
 }
-section.marche {
+.marche {
   display: flex;
   flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.8);
   padding-top: 20px;
   border-radius: 5px;
-  height: fit-content !important;
+  height: 100%;
 }
 
-/* Mettre les éléments de la classe passager et conducteur sans espacement des bords gauche et droit de la page avec symétrie */
 .psg-cnd {
   display: flex;
-  justify-content: space-between;
-  padding: 0; /* Supprime tout espacement à gauche et à droite de .psg-cnd */
-  box-sizing: border-box; /* Garantit que la taille inclut le padding */
+  justify-content: space-between; /* Maintains space between passenger and driver sections */
+  padding: 0 15px; /* Adjusts padding for visual spacing, could be set to 0 if needed */
+  box-sizing: border-box;
 }
 
 .passager,
 .conducteur {
+  flex: 1; /* Allows each section to fill equal parts of the container */
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50%; /* Chaque élément occupe 50% de l'espace disponible */
-  /* Ajustez la largeur si nécessaire en fonction du contenu */
+  padding: 0 10px; /* Adds some padding inside each section */
 }
 
-/* Mettre les éléments de la classe étape côte à côte */
 .etape {
   display: flex;
   flex-direction: row;
+  align-items: center; /* Align items vertically in the center */
   margin-bottom: 60px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
   border-radius: 20px;
+  background-color: whitesmoke;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.etape:hover {
+  transform: translateY(-10px); /* Moves the etape up slightly on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhances the shadow effect on hover */
 }
 
 .etape img {
-  width: 155px;
-  height: 149px;
+  width: 155px; /* Adjust size as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 20px; /* Adds spacing between the image and the text */
 }
 
 .etape p {
-  margin-left: 35px;
-  margin-top: 45px;
-  width: 250px;
-  height: auto;
-  font-size: 22px;
+  font-size: 18px; /* Adjust font size for readability */
+  line-height: 1.5; /* Improves text readability */
+  color: #333; /* Better text color for readability */
 }
+
 .marche h2 {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-size: 30px;
-  font-weight: 600;
-  text-align: center;
+  font-size: 28px; /* Adjust the size for better visual hierarchy */
+  font-weight: bold; /* Ensures the title stands out */
+  color: #222; /* Darker color for better contrast */
+  margin-bottom: 30px; /* Adds more space below the heading */
 }
+
 #inbox {
   margin-right: 20px;
 }
-
 #modal-body {
   height: 400px !important;
   overflow-y: scroll;
@@ -589,6 +702,7 @@ section.marche {
   display: flex !important;
   padding-left: 5px !important;
   padding-right: 5px !important;
+  flex-direction: column;
 }
 .notification {
   list-style-type: none;
@@ -602,6 +716,7 @@ section.marche {
   width: 100%;
   justify-content: space-evenly;
 }
+
 .site-footer {
   background-color: #26272b;
   padding: 45px 0 20px;
@@ -637,7 +752,7 @@ section.marche {
   line-height: 1.7;
 }
 .social-icons {
-  text-align: center;
+  text-align: left;
 }
 .social-icons a {
   width: 40px;

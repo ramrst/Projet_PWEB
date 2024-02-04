@@ -1,9 +1,11 @@
 body {
   height: 100% !important;
+  margin-bottom: 70px !important;
 }
 
 header {
   background-color: #333 !important;
+  height: 70px !important;
 }
 a {
   text-decoration: none;
@@ -127,24 +129,37 @@ md-input-container.md-default-theme .md-input {
   justify-content: space-between;
 }
 .trip-card {
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #ffffff;
+
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   cursor: pointer;
   position: relative;
   top: 70px;
-  width: 600px;
+  width: 800px;
+  padding-left: 25px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
 }
-
-.trip-card:hover {
-  background-color: #f0f0f0;
+.trip-info {
+  display: flex;
+  flex-direction: column;
 }
 
 .driver-info {
-  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 }
-
+.driver-info span {
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: 700;
+}
 .trip-info {
   margin-top: 10px;
 }

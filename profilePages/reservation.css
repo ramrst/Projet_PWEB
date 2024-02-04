@@ -1,0 +1,96 @@
+body {
+  background-color: rgb(233, 233, 233) !important;
+}
+.titel {
+  text-align: center;
+  position: relative !important;
+  top: 90px;
+  font-size: 40px;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 50px;
+}
+.trip-card p {
+  margin: 0;
+}
+i {
+  vertical-align: middle;
+  font-size: 50px;
+  color: rgb(8, 8, 8);
+}
+.small {
+  font-size: 30px !important;
+}
+.localisation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.localisation_info {
+  margin-left: 20px;
+}
+#depart {
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+#destination {
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #686767;
+}
+
+#place_reserver {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+#prix_place {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#line {
+  width: 80%;
+  border-radius: 10px;
+  height: 1px;
+  background-color: #ccc;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  align-self: center;
+}
+.nbr {
+  font-size: 30px;
+  font-weight: 700;
+  color: #333;
+  margin-left: 10px;
+}
+.status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 60px;
+}
+.status span {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+  margin-left: 10px;
+}
+#cancel_reservation,
+#annuler_reservation {
+  width: 80% !important;
+  align-self: center;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.temps {
+  margin-left: 50px !important;
+  font-weight: 600;
+  color: #858585;
+}

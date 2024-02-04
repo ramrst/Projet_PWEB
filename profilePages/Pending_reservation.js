@@ -29,7 +29,10 @@ document.addEventListener("DOMContentLoaded", function () {
     snapshot.forEach((childSnapshot) => {
       let notification = childSnapshot.val();
       notification = { ...notification, id: childSnapshot.key };
-      if (notification.status != "accepted") {
+      if (
+        notification.status != "accepted" &&
+        notification.status != "declined"
+      ) {
         const data = {
           code_notification: childSnapshot.key,
           code_trajet: notification.rideDetails.id,
