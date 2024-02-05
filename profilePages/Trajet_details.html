@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../homePage/styles.css" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <img
+        src="../assets/COVOIT ALGIERS Logo - Original - 5000x5000.png"
+        style="width: 150px; height: 150px"
+      />
+      <h1
+        style="
+          font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+            'Lucida Sans', Arial, sans-serif;
+          color: beige;
+        "
+      >
+        CovoitAlgiers
+      </h1>
+      <nav>
+        <div class="left-menu">
+          <ul>
+            <li><a href="../homePage/index.html">Accueil</a></li>
+            <li>
+              <a href="../homePage/index.html#presentation">Présentation</a>
+            </li>
+            <li><a href="../homePage/index.html#aventage">aventages</a></li>
+            <li>
+              <a href="../Ridespage/ridespage.html" id="trajetsLink">Trajets</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <table class="md-table" id="md-table" style="width: 95%">
+      <thead>
+        <tr class="md-table-headers-row">
+          <th class="md-table-header">Nom</th>
+          <th class="md-table-header">Prenom</th>
+          <th class="md-table-header">Tel</th>
+          <th class="md-table-header">Nombre de place reserver</th>
+          <th class="md-table-header">date de reservation</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+    <!--<div class="md-table-footer">
+      <div>
+        <button class="md-primary md-hue-2" disabled aria-label="Previous Page">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <a href="#">
+          <button class="md-primary md-hue-2 md-table-footer-item">
+            <p id="pageIndex" class="md-table-active-page">1</p>
+          </button>
+        </a>
+        <button class="md-primary md-hue-2" aria-label="Next Page">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>!-->
+
+    <!-- <script src="script.js" type="module"></script> -->
+    <script src="trajet_details.js"></script>
+  </body>
+</html>

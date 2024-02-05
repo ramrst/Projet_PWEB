@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Accueil - Covoiturage</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/fastbootstrap@2.1.0/dist/css/fastbootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha256-7gHJpsgk5BJHsd/tOfDnH0qKNCzmTMJ8zv+UYYw9CXE="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../notifications.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <!--awesome font update here-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <img
+        src="../assets/COVOIT ALGIERS Logo - Original - 5000x5000.png"
+        style="width: 150px; height: 150px"
+      />
+      <h1
+        style="
+          font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+            'Lucida Sans', Arial, sans-serif;
+          color: beige;
+        "
+      >
+        CovoitAlgiers
+      </h1>
+      <nav>
+        <div class="left-menu">
+          <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#presentation">Présentation</a></li>
+            <li><a href="#aventage">aventages</a></li>
+            <li>
+              <a href="../Ridespage/ridespage.html" id="trajetsLink">Trajets</a>
+            </li>
+            <li>
+              <div id="notifications">
+                <button
+                  type="button"
+                  class="btn position-relative"
+                  id="inbox"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                >
+                  Demande de reservation
+                  <span
+                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    id="inboxNumber"
+                  >
+                  </span>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <button class="blue-button" id="connexionbutton">Connexion</button>
+      <div class="right-menu" id="right-menu">
+        <div id="user">
+          <div id="userAvatar"></div>
+          <div id="userInfo"></div>
+        </div>
+        <ul id="drop_down" class="drop_down">
+          <li>
+            <a href="../profilePages/MesReservation.html">
+              <img src="../icons/reservation.png" alt="Mes Reservation" />
+              <p>Mes Reservations</p>
+              <p class="arrow">></p>
+            </a>
+          </li>
+          <li>
+            <a href="../profilePages/MesTrajet_mesReservations.html">
+              <img src="../icons/route.png" alt="Mes trajets" />
+              <p>Mes trajets</p>
+              <p class="arrow">></p>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" id="signout">
+              <img src="../icons/sortie.png" alt="Mes trajets" />
+              <p>Deconnexion</p>
+              <p class="arrow">></p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="search-form" id="search">
+      <div class="trt">
+        <h3>TROUVER</h3>
+        <h1>UN COVOITURAGE</h1>
+        <p>Covoiturer sur tous vos types de trajets sans aucune commission.</p>
+      </div>
+      <div class="contain">
+        <form id="trajet_form">
+          <!--drops-->
+          <div class="drop drop-1"></div>
+          <div class="drop drop-2"></div>
+          <div class="drop drop-3"></div>
+          <div class="drop drop-4"></div>
+          <!-- Departure Location -->
+          <div id="depart_arrivee">
+            <div class="form-group">
+              <label for="departureInput">Lieu de départ :</label>
+              <div class="input-icon-wrapper">
+                <input
+                  type="text"
+                  id="departureInput"
+                  name="departureInput"
+                  required
+                />
+                <i class="fas fa-map-marker-alt" id="getLocation"></i>
+              </div>
+              <ul id="suggestionsList" class="suggestionsList"></ul>
+            </div>
+
+            <!-- Arrival Location -->
+            <div class="form-group">
+              <label for="arrivalInput">Lieu d'arrivée :</label>
+              <input
+                type="text"
+                id="arrivalInput"
+                name="arrivalInput"
+                required
+              />
+              <ul id="suggestionsList1" class="suggestionsList"></ul>
+            </div>
+          </div>
+          <div class="form_date_nbrPass">
+            <div>
+              <label for="date_depart">Date de départ :</label>
+              <input type="date" id="date_depart" name="date_depart" required />
+              <br /><br />
+            </div>
+            <div>
+              <label for="numbre_de_passager">Nombre de passager :</label>
+              <input
+                type="number"
+                id="nbre_passager"
+                name="nbre_passager"
+                min="1"
+              />
+              <br /><br />
+            </div>
+          </div>
+
+          <button type="submit">Rechercher</button>
+        </form>
+      </div>
+      <div class="modal" tabindex="-1" id="exampleModal">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Pending reservations</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <main>
+      <div class="carrefour">
+        <h1 style="padding: 10px">Qui somme nous ?</h1>
+        <section class="presentation" id="presentation">
+          <div class="contain1">
+            <p id="animatedText"></p>
+          </div>
+          <!-- The rest of your content -->
+        </section>
+
+        <section class="marche">
+          <h2>Comment Ca Marche ?</h2>
+          <div class="psg-cnd">
+            <div class="passager">
+              <h2>si vous cherchez un trajet</h2>
+              <div class="etape">
+                <img
+                  src="../assets/search_driver-f3718d6e.svg"
+                  alt="passager-etape1"
+                />
+                <p>
+                  Recherchez un trajet en indiquant votre point de départ et
+                  votre destination sur l'application. Cela vous permet de voir
+                  les trajets partagés disponibles proposés par les conducteurs.
+                </p>
+              </div>
+              <div class="etape">
+                <img
+                  src="../assets/talk_driver-d48a09c2.svg"
+                  alt="passager-etape2"
+                />
+                <p>
+                  Une fois que vous avez trouvé un trajet qui correspond à vos
+                  besoins, vous pouvez contacter le conducteur pour discuter des
+                  détails tels que le lieu de rendez-vous et le prix du
+                  covoiturage.
+                </p>
+              </div>
+              <div class="etape">
+                <img
+                  src="../assets/car_driver-688dafa8.svg"
+                  alt="passager-etape3"
+                />
+                <p>
+                  Confirmez votre place dans le trajet et préparez-vous à
+                  voyager. En covoiturant, vous contribuez à réduire le nombre
+                  de voitures sur les routes, économisez de l'argent et avez
+                  l'opportunité de rencontrer de nouvelles personnes.
+                </p>
+              </div>
+            </div>
+
+            <div class="conducteur">
+              <h2>si vous partagez un trajet</h2>
+              <div class="etape">
+                <img
+                  src="../assets/search_passenger-5b84f99a.svg"
+                  alt="passager-etape1"
+                />
+                <p>
+                  Publiez votre trajet en précisant votre itinéraire, les
+                  horaires de départ et d'arrivée sur l'application. Cela permet
+                  aux passagers cherchant un trajet similaire de vous trouver
+                  facilement.
+                </p>
+              </div>
+              <div class="etape">
+                <img
+                  src="../assets/talk_passenger-1ed6e92a.svg"
+                  alt="passager-etape2"
+                />
+                <p>
+                  Recevez des demandes de covoiturage de la part des passagers
+                  intéressés. Vous pouvez consulter leurs profils et discuter
+                  avec eux pour convenir des détails comme le point de
+                  rendez-vous et la participation aux frais de voyage.
+                </p>
+              </div>
+              <div class="etape">
+                <img
+                  src="../assets/car_passenger-bb2c5b2d.svg"
+                  alt="passager-etape3"
+                />
+                <p>
+                  Confirmez les passagers qui vous accompagneront et préparez
+                  votre véhicule pour le trajet. En partageant votre trajet,
+                  vous faites des économies sur vos dépenses de voyage, réduisez
+                  l'empreinte carbone et profitez de la compagnie de nouveaux
+                  amis pendant le trajet.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-about col">
+            <h6>About Nsogo</h6>
+            <p class="text-justify">
+              CovoitAlgiers est une application de covoiturage innovante conçue
+              pour faciliter vos déplacements tout en réduisant l'empreinte
+              carbone.
+            </p>
+          </div>
+
+          <div class="footer-links col">
+            <h6>Quick Links</h6>
+            <ul class="footer-links">
+              <li><a href="#presentation">Présentation</a></li>
+              <li><a href="#avantages">Avantages</a></li>
+              <li><a href="../Ridespage/ridespage.html">Trajets</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-contact col">
+            <h6>Contact Us</h6>
+            <p>123 Boulevard, Algiers, Algeria</p>
+            <p>contact@covoiturage.com</p>
+          </div>
+
+          <div class="footer-social col">
+            <h6>Follow Us</h6>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <p class="col-sm">
+            &copy; 2024 CovoitAlgiers Covoiturage. All Rights Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../places.js"></script>
+    <script src="script.js"></script>
+    <script src="getUserLocation.js"></script>
+    <script src="../userInfo.js"></script>
+    <script src="../signout.js" type="module"></script>
+    <script src="../Notifications.js" type="module"></script>
+  </body>
+</html>

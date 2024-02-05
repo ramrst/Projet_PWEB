@@ -1,0 +1,27 @@
+.notification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+.notification span {
+  font-weight: 700;
+}
+.accept {
+  background-color: transparent !important;
+  border-radius: 10px !important ;
+  color: rgb(57, 91, 240) !important;
+}
+.decline {
+  border-radius: 10px !important ;
+  background-color: transparent !important;
+  color: rgb(253, 64, 64) !important;
+}
+
+.accept:hover {
+  transform: scale(1.1);
+}
+.decline:hover {
+  transform: scale(1.1);
+}
